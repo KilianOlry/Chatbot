@@ -1,5 +1,6 @@
 import viewNav from './views/nav';
 import viewUsers from './views/viewUsers';
+import viewInput from './views/viewInput';
 import Router from './Router';
 
 import './index.scss';
@@ -13,8 +14,8 @@ const Site = class {
     return `
     ${viewNav()}
     <main class="mt-2">
-      <div class='row'>
-        <article class='col-3'>
+      <div class='row p-2'>
+        <article class='col-3 border-end'>
           ${viewUsers()}
         </article>
         <div class='col-9'>
@@ -23,9 +24,7 @@ const Site = class {
           </div>
           
           <div class='row'>
-            <div class="input-group">
-            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="button addons">
-            <button class="btn btn-outline-secondary" type="button">Button</button>
+            ${viewInput()}
           </div>
 
           </div>

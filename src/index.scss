@@ -2,6 +2,10 @@
 // COLORS
 $secondary-color: #3c3936;
 
+*{
+  margin: 0;
+  padding: 0;
+}
 
 // STYLE
 span{
@@ -9,8 +13,8 @@ span{
 }
 article{
   overflow-y: auto;
-  height: calc(100vh - 114px);
+  height: calc(100vh - 170px);
 }
 .textarea{
-  height: 90%;
+  height: 95%;
 }
