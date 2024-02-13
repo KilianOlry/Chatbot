@@ -1,4 +1,7 @@
 import viewNav from './views/nav';
+import Router from './Router';
+import toto from './toto.png';
+
 import './index.scss';
 
 const Site = class {
@@ -14,6 +17,13 @@ const Site = class {
     this.el.innerHTML = this.render();
   }
 };
+
+const routes = [{
+  url: '/search'
+  // ,controller: Search
+}];
+
+new Router(routes);
 
 const showSite = new Site();
 
