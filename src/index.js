@@ -1,11 +1,20 @@
-import toto from './toto.png';
-
+import viewNav from './views/nav';
 import './index.scss';
 
-const hello = 'hello';
-document.body.innerHTML = ` 
-  <h1>Hello Toto !</h1>
-  <img width="300" src="${toto}" alt="toto">
-`;
+const Site = class {
+  constructor() {
+    this.el = document.getElementById('app');
+  }
 
-console.log(hello);
+  render() {
+    return viewNav();
+  }
+
+  run() {
+    this.el.innerHTML = this.render();
+  }
+};
+
+const showSite = new Site();
+
+showSite.run();
