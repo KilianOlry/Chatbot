@@ -1,13 +1,22 @@
+import viewNav from './views/nav';
 import Router from './Router';
 import toto from './toto.png';
 
 import './index.scss';
 
-const hello = 'hello';
-document.body.innerHTML = `
-  <h1>Hello Toto !</h1>
-  <img width="300" src="${toto}" alt="toto">
-`;
+const Site = class {
+  constructor() {
+    this.el = document.getElementById('app');
+  }
+
+  render() {
+    return viewNav();
+  }
+
+  run() {
+    this.el.innerHTML = this.render();
+  }
+};
 
 const routes = [{
   url: '/search'
@@ -16,4 +25,6 @@ const routes = [{
 
 new Router(routes);
 
-console.log(hello);
+const showSite = new Site();
+
+showSite.run();
