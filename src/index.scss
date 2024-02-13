@@ -1,5 +1,16 @@
 @charset "utf-8";
+// COLORS
+$secondary-color: #3c3936;
 
-h1 {
-  color: red;
+
+// STYLE
+span{
+  color: $secondary-color;
+}
+article{
+  overflow-y: auto;
+  height: calc(100vh - 114px);
+}
+.textarea{
+  height: 90%;
 }
