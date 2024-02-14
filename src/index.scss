@@ -2,15 +2,25 @@
 // COLORS
 $secondary-color: #3c3936;
 
-
+*{
+  margin: 0;
+  padding: 0;
+}
+body{
+  overflow: hidden;
+}
 // STYLE
 span{
   color: $secondary-color;
 }
-article{
-  overflow-y: auto;
-  height: calc(100vh - 114px);
+.textarea, article{
+  overflow: auto;
+}
+article, .textarea{
+  height: calc(100vh - 170px);
 }
 .textarea{
-  height: 90%;
+  height: 95%;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
