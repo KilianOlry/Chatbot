@@ -1,7 +1,3 @@
-// import viewUsers from '../views/viewUsers';
-// import viewInput from '../views/viewInput';
-// import viewMessage from '../views/viewMessage';
-
 const Chat = class {
   constructor() {
     this.el = document.getElementById('app');
@@ -17,7 +13,6 @@ const Chat = class {
     elInputChat.addEventListener('keyup', (event) => {
       if (event.key === 'Enter') {
         const keyWord = elInputChat.value;
-        console.log(keyWord);
         elInputChat.value = '';
         this.message.innerHTML += this.render(keyWord);
       }
@@ -30,7 +25,6 @@ const Chat = class {
 
     elInputButton.addEventListener('click', () => {
       const keyWord = elInputChat.value;
-      console.log(keyWord);
       elInputChat.value = '';
       this.message.innerHTML += this.render(keyWord);
     });
