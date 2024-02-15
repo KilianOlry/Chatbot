@@ -33,20 +33,12 @@ const Site = class {
 
             <div class='row'>
               <div class='col-12 d-flex justify-content-end'>
-                <div class='row'>
-                  ${viewMessage()}
+                <div class='row message'>
+
                 </div>
               </div>
             </div>
 
-            <div class='row'>
-              <div class='col-12 d-flex justify-content-end'>
-                <div class='row'>
-                  ${viewMessage()}
-                </div>
-              </div>
-            </div>
-            
           </div>
 
 
