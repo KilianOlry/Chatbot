@@ -3,6 +3,7 @@ import viewUsers from './views/viewUsers';
 import viewInput from './views/viewInput';
 import viewMessage from './views/viewMessage';
 import Router from './Router';
+import Chat from './controllers/Chat';
 
 import './index.scss';
 
@@ -38,13 +39,20 @@ const Site = class {
               </div>
             </div>
 
+            <div class='row'>
+              <div class='col-12 d-flex justify-content-end'>
+                <div class='row'>
+                  ${viewMessage()}
+                </div>
+              </div>
+            </div>
+            
           </div>
 
 
           <div class='row'>
             ${viewInput()}
           </div>
-
           </div>
         </div>
       </div>
@@ -59,8 +67,8 @@ const Site = class {
 };
 
 const routes = [{
-  url: '/search'
-  // ,controller: Search
+  url: '/chat',
+  controller: Chat
 }];
 
 const showSite = new Site();
