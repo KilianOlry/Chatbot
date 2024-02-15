@@ -1,6 +1,6 @@
 const Error404 = class {
   constructor() {
-    this.el = document.querySelector('#root');
+    this.el = document.getElementById('app');
 
     this.run();
   }
