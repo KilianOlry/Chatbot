@@ -1,14 +1,23 @@
 @charset "utf-8";
 // COLORS
+$primary-color: #0052f7;
 $secondary-color: #3c3936;
 
-*{
-  margin: 0;
-  padding: 0;
+// GLOBAL
+i{
+  cursor: pointer;
+}
+.text{
+  width: 300px;
+}
+main{
+  z-index: 100;
+  position: relative;
 }
 body{
   overflow: hidden;
 }
+
 // STYLE
 span{
   color: $secondary-color;
@@ -20,7 +29,39 @@ article, .textarea{
   height: calc(100vh - 170px);
 }
 .textarea{
-  height: 95%;
-  overflow-x: hidden;
   overflow-y: auto;
+}
+
+.responsive{
+  display: block !important;
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  z-index: 1000 !important;
+  width: 300px;
+  background-color: #3c3936;
+}
+.send{
+  background-color: $primary-color;
+  color: white;
+  transition: .5s;
+  &:hover{
+    font-size: 18px;
+  }
+}
+
+// RESPONSIVE
+@media screen and (min-width: 997px) {
+  .viewUser{
+   display: flex !important;
+   transition: .5s !important;
+  }
+  .main{
+    height: 100vh !important;
+    position: relative !important;
+  }
+  .toggleBtn{
+    display: none;
+    color: $primary-color;
+  }
 }
