@@ -17,16 +17,26 @@ main{
 body{
   overflow: hidden;
 }
+// SCROLLBAR
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $primary-color;
+  border-radius: 1rem;
+}
 
 // STYLE
-span{
-  color: $secondary-color;
-}
 .textarea, article{
   overflow: auto;
 }
 article, .textarea{
-  height: calc(100vh - 170px);
+  height: calc(100vh - 210px);
 }
 .textarea{
   overflow-y: auto;
@@ -42,20 +52,17 @@ article, .textarea{
   background-color: #3c3936;
 }
 .send{
-  background-color: $primary-color;
+  background-color: $secondary-color;
   color: white;
   transition: .5s;
   &:hover{
+    background-color: $primary-color;
     font-size: 18px;
   }
 }
 
 // RESPONSIVE
 @media screen and (min-width: 997px) {
-  .viewUser{
-   display: flex !important;
-   transition: .5s !important;
-  }
   .main{
     height: 100vh !important;
     position: relative !important;
@@ -63,5 +70,9 @@ article, .textarea{
   .toggleBtn{
     display: none;
     color: $primary-color;
+  }
+  .viewBots{
+   display: flex !important;
+   transition: .5s !important;
   }
 }
