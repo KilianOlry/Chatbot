@@ -2,6 +2,7 @@ import viewNav from './views/nav';
 import viewBots from './views/viewBots';
 import viewInput from './views/viewInput';
 import viewMessage from './views/viewMessage';
+import botDatas from './models/Bot';
 import Router from './Router';
 import Chat from './controllers/Chat';
 
@@ -18,7 +19,7 @@ const Site = class {
     <main class="mt-2 main">
       <div class='row'>
         <article class='d-none col-lg-3 border-end viewBots'>
-          ${viewBots()}
+          ${viewBots(botDatas)}
         </article>
         <div class='col-12 col-lg-9'>
           <div class='textarea px-5'>
