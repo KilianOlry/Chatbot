@@ -1,5 +1,5 @@
 import viewNav from './views/nav';
-import viewUsers from './views/viewUsers';
+import viewBots from './views/viewBots';
 import viewInput from './views/viewInput';
 import viewMessage from './views/viewMessage';
 import Router from './Router';
@@ -17,15 +17,15 @@ const Site = class {
     ${viewNav()}
     <main class="mt-2 main">
       <div class='row p-2'>
-        <article class='d-none col-lg-3 border-end viewUser'>
-          ${viewUsers()}
+        <article class='d-none col-lg-3 border-end viewBots'>
+          ${viewBots()}
         </article>
         <div class='col-12 col-lg-9'>
           <div class='textarea px-5'>
 
             <div class='row my-2'>
               <div class='col-12 d-flex justify-content-start'>
-                <div class='row'>
+                <div class='row container__message__bot'>
                   ${viewMessage()}
                 </div>
               </div>
@@ -33,19 +33,18 @@ const Site = class {
 
             <div class='row my-2'>
               <div class='col-12 d-flex justify-content-end'>
-                <div class='row message'>
-
+                <div class='row container__message__user'>
+      
                 </div>
               </div>
             </div>
 
           </div>
 
-
           <div class='row'>
             ${viewInput()}
           </div>
-          </div>
+
         </div>
       </div>
 
@@ -55,12 +54,6 @@ const Site = class {
 
   run() {
     this.el.innerHTML = this.render();
-    const toggleBtn = document.querySelector('.toggleBtn');
-    const viewUser = document.querySelector('.viewUser');
-
-    toggleBtn.addEventListener('click', () => {
-      viewUser.classList.toggle('responsive');
-    });
   }
 };
 
@@ -73,3 +66,11 @@ const showSite = new Site();
 
 showSite.run();
 new Router(routes);
+
+// toggle btn
+const toggleBtn = document.querySelector('.toggleBtn');
+const viewUser = document.querySelector('.viewBots');
+
+toggleBtn.addEventListener('click', () => {
+  viewUser.classList.toggle('responsive');
+});
