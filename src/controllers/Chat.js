@@ -32,18 +32,18 @@ const Chat = class {
 
   render(content) {
     return `
-    <div class="message messageBot">
-    <div class='d-flex justify-content-end'>
-      <img src="https://imgs.search.brave.com/0VTo8VUZnbZd3RhVgdSh3ER2UrAB_SxA-Xlj_CiByec/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9mci50/b3B3b3JsZGF1dG8u/Y29tL3Bob3Rvcy8v/ZDcvYzcvbGlnaHRu/aW5nLW1jcXVlZW4t/cmVkLWNhci1mcm9t/LWRpc25leS0zOS1z/LW1vdmllLWNhcnMt/NjI1LmpwZw" width='80' class='inline-block rounded-circle shadow-sm' height='80' alt="">
-    </div>
-    <div class='shadow-sm px-3 rounded-5'>
-      <p class=''>Flash McQueen</p>
-      <p>${content}</p>
-      <div class='d-flex justify-content-end'>
-        <p class='rounded-2 px-2 d-inline bg-primary text-white fs-6 fst-italic'>15/02/2024</p>
+    <div class="message messageBot d-flex gap-2 mt-4">
+      <div class='message_container shadow px-3 rounded-1'>
+          <p class='mt-2'>Matéo Grange</p>
+          <p>${content}</p>
+          <div class='d-flex justify-content-end'>
+            <p class='rounded-2 m-2 px-2 d-inline bg-primary text-white fs-6 fst-italic'>15/02/2024</p>
+          </div>
+        </div>
+      <div class=' justify-content-end'>
+        <img src="https://i.pinimg.com/564x/47/ba/71/47ba71f457434319819ac4a7cbd9988e.jpg" width='80' class='inline-block rounded-circle shadow-sm' height='80' alt="">
       </div>
     </div>
-  </div>
     `;
   }
 

@@ -76,3 +76,25 @@ article, .textarea{
    transition: .5s !important;
   }
 }
+
+.ellipsis {
+  text-overflow: ellipsis; /* enables ellipsis */
+  white-space: nowrap; /* keeps the text in a single line */
+  overflow: hidden; /* keeps the element from overflowing its parent */
+}
+
+.message_container_bot {
+  border: solid rgb(216, 216, 216) 1px;
+  border-radius: 15px !important;
+  max-width: 65%;
+}
+
+.message_container {
+  border: solid rgb(216, 216, 216) 1px;
+  border-radius: 15px !important;
+}
+
+.preview {
+  max-width: 330px;
+}
+
