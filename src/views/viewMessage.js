@@ -1,5 +1,5 @@
 export default () => (`
-<div class="message messageBot d-flex gap-2 mt-4">
+<div class="message messageBot d-flex gap-2">
   <div>
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSD4hhYnxq3v-q05kUNHy6K-QDZFKsZM4cdJg&usqp=CAU" width='80' class='inline-block rounded-circle shadow-sm' height='80' alt="">
   </div>

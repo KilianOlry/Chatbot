@@ -2,6 +2,7 @@
 // COLORS
 $primary-color: #0052f7;
 $secondary-color: #3c3936;
+$gray-color: #f4f6f7;
 
 // GLOBAL
 i{
@@ -17,29 +18,39 @@ main{
 body{
   overflow: hidden;
 }
+.container__bot{
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: $gray-color;
+  &__list{
+    background-color: transparent;
+  }
+  .__description {
+    white-space: nowrap; 
+    width: 70%; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
 // SCROLLBAR
 ::-webkit-scrollbar {
   width: 5px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: $primary-color;
-  border-radius: 1rem;
+  &-track{
+    background: transparent;
+  }
+  &-thumb{
+    background: $primary-color;
+    border-radius: 1rem;
+  }
 }
 
 // STYLE
-.textarea, article{
-  overflow: auto;
-}
 article, .textarea{
-  height: calc(100vh - 210px);
+  height: calc(100vh - 114px);
 }
 .textarea{
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .responsive{
@@ -60,29 +71,6 @@ article, .textarea{
     font-size: 18px;
   }
 }
-
-// RESPONSIVE
-@media screen and (min-width: 997px) {
-  .main{
-    height: 100vh !important;
-    position: relative !important;
-  }
-  .toggleBtn{
-    display: none;
-    color: $primary-color;
-  }
-  .viewBots{
-   display: flex !important;
-   transition: .5s !important;
-  }
-}
-
-.ellipsis {
-  text-overflow: ellipsis; /* enables ellipsis */
-  white-space: nowrap; /* keeps the text in a single line */
-  overflow: hidden; /* keeps the element from overflowing its parent */
-}
-
 .message_container_bot {
   border: solid rgb(216, 216, 216) 1px;
   border-radius: 15px !important;
@@ -96,5 +84,20 @@ article, .textarea{
 
 .preview {
   max-width: 330px;
+}
+// RESPONSIVE
+@media screen and (min-width: 997px) {
+  .main{
+    height: 100vh !important;
+    position: relative !important;
+  }
+  .toggleBtn{
+    display: none;
+    color: $primary-color;
+  }
+  .container__bot{
+   display: flex !important;
+   transition: .5s !important;
+  }
 }
 

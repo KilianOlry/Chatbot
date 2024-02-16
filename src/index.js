@@ -16,16 +16,16 @@ const Site = class {
   render() {
     return `
     ${viewNav()}
-    <main class="mt-2 main">
+    <main class="main">
       <div class='row'>
-        <article class='d-none col-lg-3 border-end viewBots'>
+        <article class='d-none col-lg-3 container__bot'>
           ${viewBots(botDatas)}
         </article>
         <div class='col-12 col-lg-9'>
-          <div class='textarea px-5'>
+          <div class='textarea'>
 
             <div class='row my-2'>
-              <div class='col-12 d-flex flex-direction-column justify-content-start'>
+              <div class='col-12 border-start d-flex flex-direction-column justify-content-start'>
                 <div class='row container__message__bot mt-4'>
                   ${viewMessage()}
                 </div>
