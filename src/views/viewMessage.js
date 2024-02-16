@@ -1,13 +1,13 @@
 export default () => (`
-<div class="message messageBot">
+<div class="message messageBot d-flex gap-2">
   <div>
-    <img src="https://www.thedecofactory.com/pub/media/catalog/product/cache/9801f9953c8bc965c65fa73ccb3f71a9/r/m/rmk1518gm_lightning_mcqueen_giant_wall_decal_assembled_product.jpg" width='80' class='inline-block rounded-circle shadow-sm' height='80' alt="">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSD4hhYnxq3v-q05kUNHy6K-QDZFKsZM4cdJg&usqp=CAU" width='80' class='inline-block rounded-circle shadow-sm' height='80' alt="">
   </div>
-  <div class='shadow px-3 rounded-5'>
-    <p class=''>Flash McQueen</p>
-    <p>Le tonnerre arrive toujours après l'éclair</p>
+  <div class='message_container shadow px-3 rounded-1'>
+    <p class='mt-2'>Thomas Shelby</p>
+    <p>No Fighting. No F***ing Fighting, No Fighting, NO F***ING FIGHTING!</p>
     <div class='d-flex justify-content-end'>
-      <p class='rounded-2 px-2 d-inline bg-primary text-white fs-6 fst-italic'>15/02/2024</p>
+      <p class='rounded-2 m-2 px-2 d-inline bg-primary text-white fs-6 fst-italic'>15/02/2024</p>
     </div>
   </div>
 </div>

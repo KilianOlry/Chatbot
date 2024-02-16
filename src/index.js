@@ -16,7 +16,7 @@ const Site = class {
     return `
     ${viewNav()}
     <main class="mt-2 main">
-      <div class='row p-2'>
+      <div class='row'>
         <article class='d-none col-lg-3 border-end viewBots'>
           ${viewBots()}
         </article>
@@ -24,8 +24,8 @@ const Site = class {
           <div class='textarea px-5'>
 
             <div class='row my-2'>
-              <div class='col-12 d-flex justify-content-start'>
-                <div class='row container__message__bot'>
+              <div class='col-12 d-flex flex-direction-column justify-content-start'>
+                <div class='row container__message__bot mt-4'>
                   ${viewMessage()}
                 </div>
               </div>
@@ -34,7 +34,7 @@ const Site = class {
             <div class='row my-2'>
               <div class='col-12 d-flex justify-content-end'>
                 <div class='row container__message__user'>
-      
+
                 </div>
               </div>
             </div>
