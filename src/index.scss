@@ -83,6 +83,12 @@ article, .textarea{
   overflow: hidden; /* keeps the element from overflowing its parent */
 }
 
+.message_container_bot {
+  border: solid rgb(216, 216, 216) 1px;
+  border-radius: 15px !important;
+  max-width: 65%;
+}
+
 .message_container {
   border: solid rgb(216, 216, 216) 1px;
   border-radius: 15px !important;
@@ -91,3 +97,4 @@ article, .textarea{
 .preview {
   max-width: 330px;
 }
+

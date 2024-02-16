@@ -32,7 +32,7 @@ const Chat = class {
 
   render(content) {
     return `
-    <div class="message messageBot d-flex gap-2">
+    <div class="message messageBot d-flex gap-2 mt-4">
       <div class='message_container shadow px-3 rounded-1'>
           <p class='mt-2'>Matéo Grange</p>
           <p>${content}</p>
