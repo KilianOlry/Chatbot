@@ -1,7 +1,7 @@
 export default () => (`
 <div class="message messageBot">
   <div>
-    <img src="https://imgs.search.brave.com/0VTo8VUZnbZd3RhVgdSh3ER2UrAB_SxA-Xlj_CiByec/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9mci50/b3B3b3JsZGF1dG8u/Y29tL3Bob3Rvcy8v/ZDcvYzcvbGlnaHRu/aW5nLW1jcXVlZW4t/cmVkLWNhci1mcm9t/LWRpc25leS0zOS1z/LW1vdmllLWNhcnMt/NjI1LmpwZw" width='80' class='inline-block rounded-circle shadow-sm' height='80' alt="">
+    <img src="https://www.thedecofactory.com/pub/media/catalog/product/cache/9801f9953c8bc965c65fa73ccb3f71a9/r/m/rmk1518gm_lightning_mcqueen_giant_wall_decal_assembled_product.jpg" width='80' class='inline-block rounded-circle shadow-sm' height='80' alt="">
   </div>
   <div class='shadow px-3 rounded-5'>
     <p class=''>Flash McQueen</p>
