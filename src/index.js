@@ -31,8 +31,6 @@ const Site = class {
                 </div>
               </div>
 
-
-
               <div class='test'>
                 <div class='container__message__user'>
 

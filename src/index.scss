@@ -5,6 +5,7 @@ $secondary-color: #ffffff;
 $text-color: #140F26;
 $text-color-2: #2E4043;
 $bg-message-user: #746373;
+$color-btn: #3ba58b;
 
 // FONT
 $fontfamily: "Roboto", sans-serif;
@@ -49,7 +50,7 @@ i{
     background: $primary-color;
   }
   &-thumb{
-    background: $secondary-color;
+    background: $bg-message-user;
     border-radius: 1rem;
   }
 }
@@ -79,8 +80,8 @@ main{
   height: calc(100vh - 100px);
   .bot__list{
     @include flex(column, center, no-wrap);
-    padding: 10px;
-    gap: 10px;
+    padding: 20px 10px;
+    gap: 16px;
     &__item{
       display: flex;
       align-items: center;
@@ -115,7 +116,9 @@ main{
   padding: 20px;
   height: calc(100vh - 100px);
   .textarea{
+    position: relative;
     overflow-y: scroll;
+    overflow-x: hidden;
     padding: 30px;
     height: 100%;
     border-radius: 10px;
@@ -183,13 +186,36 @@ main{
 
   }
 
-// .container__input{
-//   position: fixed !important;
-//   bottom: 0 !important;
-//   width: 100% !important;
-//   &__input{
-//     position: relative !important;
-//   }
+  // INPUT WRITE
+  .container__input{
+    display: flex;
+    justify-content: center;
+    &__input{
+      position: fixed;
+      bottom: 50px;
+      input{
+        width: 320px;
+        padding: 20px 50px;
+        border-radius: 20px;
+        border: none;
+        outline: none;
+        background-color: $primary-color;
+      }
+      ::placeholder{
+        font-size: 15px;
+      }
+      button{
+        outline: none;
+        border: none;
+        padding: 10px;
+        border-radius: 50%;
+        background-color: $color-btn;
+        color: $secondary-color;
+        font-size: 20px;
+      }
+    }
+  }
+
 // .responsive{
 //   display: block !important;
 //   position: absolute !important;
