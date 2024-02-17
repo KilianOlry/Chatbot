@@ -52,7 +52,26 @@ article, .textarea{
   overflow-y: auto;
   overflow-x: hidden;
 }
-
+.container__input{
+  position: fixed !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  &__input{
+    position: relative !important;
+  }
+  .send{
+    background-color: $secondary-color;
+    color: white;
+    transition: .5s;
+    position: absolute !important;
+    top: 0 !important;
+    right: 300px !important;
+    &:hover{
+      background-color: $primary-color;
+      font-size: 18px;
+    }
+  }
+}
 .responsive{
   display: block !important;
   position: absolute !important;
@@ -62,15 +81,7 @@ article, .textarea{
   width: 300px;
   background-color: #3c3936;
 }
-.send{
-  background-color: $secondary-color;
-  color: white;
-  transition: .5s;
-  &:hover{
-    background-color: $primary-color;
-    font-size: 18px;
-  }
-}
+
 .message_container_bot {
   border: solid rgb(216, 216, 216) 1px;
   border-radius: 15px !important;

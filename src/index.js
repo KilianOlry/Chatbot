@@ -42,7 +42,7 @@ const Site = class {
 
           </div>
 
-          <div class='row'>
+          <div class='container__input'>
             ${viewInput()}
           </div>
 
@@ -70,7 +70,7 @@ new Router(routes);
 
 // toggle btn
 const toggleBtn = document.querySelector('.toggleBtn');
-const viewUser = document.querySelector('.viewBots');
+const viewUser = document.querySelector('.container__bot');
 
 toggleBtn.addEventListener('click', () => {
   viewUser.classList.toggle('responsive');
