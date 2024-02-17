@@ -72,6 +72,7 @@ i{
 }
 main{
   display: flex;
+  position: relative;
 }
 // VIEW BOT
 .container__bot{
@@ -195,7 +196,7 @@ main{
       bottom: 50px;
       input{
         width: 320px;
-        padding: 20px 50px;
+        padding: 20px 20px;
         border-radius: 20px;
         border: none;
         outline: none;
@@ -216,29 +217,34 @@ main{
     }
   }
 
-// .responsive{
-//   display: block !important;
-//   position: absolute !important;
-//   top: 0 !important;
-//   right: 0 !important;
-//   z-index: 1000 !important;
-//   width: 300px;
-//   background-color: #3c3936;
-// }
+// RESPONSIVE
+@media screen and (max-width: 1200px) {
+  .container__message__user, .container__message__bot{
+    max-width: 100% !important;
+  }
+}
+@media screen and (max-width: 997px) {
+  #toggleBtn{
+    display: block;
+  }
+}
+@media screen and (max-width: 720px) {
+  .container__bot{
+    display: none;
+  }
+}
+@media screen and (max-width: 450px) {
+  #input{
+    width: 230px;
+  }
+}
 
-// // RESPONSIVE
-// @media screen and (min-width: 997px) {
-//   .main{
-//     height: 100vh !important;
-//     position: relative !important;
-//   }
-//   .toggleBtn{
-//     display: none;
-//     color: $primary-color;
-//   }
-//   .container__bot{
-//    display: flex !important;
-//    transition: .5s !important;
-//   }
-// }
-
+.responsive{
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  z-index: 100;
+  background-color: $bg-message-user;
+}

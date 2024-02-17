@@ -5,7 +5,7 @@ export default () => (`
   </div>
   <div class='content__message___bot'>
     <p class='botName'>Thomas Shelby</p>
-    <p class='botmessage'>No Fighting. No F***ing Fighting, No Fighting, NO F***ING FIGHTING!No Fight</p>
+    <p class='botmessage'> No Fighting. No F***ing Fighting, No Fighting, NO F***ING FIGHTING!No FightNo Fighting. No F***ing Fighting, No Fighting, NO F***ING FIGHTING!No FightNo Fighting. No F***ing Fighting, No Fighting, NO F***ING FIGHTING!No Fight</p>
       <p class='botDate'>13:04:14 - 15/02/2024</p>
   </div>
 </div>

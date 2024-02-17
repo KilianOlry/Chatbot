@@ -35,7 +35,6 @@ const Site = class {
                 <div class='container__message__user'>
 
                 </div>
-
               </div>
 
             <div class='container__input'>
