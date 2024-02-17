@@ -16,11 +16,12 @@ const Site = class {
   render() {
     return `
     ${viewNav()}
-    <main class="main">
-      <div class='row'>
-        <article class='d-none col-lg-3 container__bot'>
+    <main>
+
+        <article class='container__bot'>
           ${viewBots(botDatas)}
         </article>
+
         <div class='col-12 col-lg-9'>
           <div class='textarea'>
 
@@ -47,8 +48,6 @@ const Site = class {
           </div>
 
         </div>
-      </div>
-
     </main>
     `;
   }

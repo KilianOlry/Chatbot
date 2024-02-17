@@ -1,8 +1,10 @@
 @charset "utf-8";
 // COLORS
-$primary-color: #AEB5C2;
-$secondary-color: #F2F5F9;
-$gray-color: #f4f6f7;
+$primary-color: #f5f7fb;
+$secondary-color: #ffffff;
+$text-color: #140F26;
+$text-color-2: #2E4043;
+
 // FONT
 $fontfamily: "Roboto", sans-serif;
 
@@ -15,6 +17,7 @@ $fontfamily: "Roboto", sans-serif;
 body{
   font-family: $fontfamily;
   background-color: $primary-color;
+  height: 100vh;
 }
 ul{
   list-style: none;
@@ -29,6 +32,17 @@ i{
   max-width: 1200px;
   margin: 0 auto;
 }
+// SCROLLBAR
+::-webkit-scrollbar {
+  width: 5px;
+  &-track{
+    background: $primary-color;
+  }
+  &-thumb{
+    background: $secondary-color;
+    border-radius: 1rem;
+  }
+}
 // HEADER
 .container__navbar{
   background-color: $secondary-color;
@@ -36,27 +50,62 @@ i{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 3%;
+    padding: 10px;
     font-size: 20px;
     &__logo{
       display: flex;
       align-items: center;
     }
+    .toggleBtn{
+      display: none;
+    }
   }
 }
+main{
+  display: flex;
+}
 // VIEW BOT
-
+.container__bot{
+  max-width: 350px;
+  overflow-y: scroll;
+  height: calc(100vh - 100px);
+  .bot__list{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 10px;
+    &__item{
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 10px;
+      background-color: $secondary-color;
+      border-radius: 10px;
+      img{
+        border-radius: 50%;
+      }
+      .__description {
+        white-space: nowrap; 
+        width: 100%; 
+        overflow: hidden;
+        text-overflow: ellipsis;
+        &__bot__name{
+          columns: $text-color;
+          font-weight: 500;
+        }
+        &__bot__message{
+          columns: $text-color-2;
+          font-weight: 300;
+          font-style: italic;
+        }
+      }
+    }
+  }
+}
 
 
 // .text{
 //   width: 300px;
-// }
-// main{
-//   z-index: 100;
-//   position: relative;
-// }
-// body{
-//   overflow: hidden;
 // }
 // .container__bot{
 //   overflow-y: auto;
@@ -65,24 +114,8 @@ i{
 //   &__list{
 //     background-color: transparent;
 //   }
-//   .__description {
-//     white-space: nowrap; 
-//     width: 70%; 
-//     overflow: hidden;
-//     text-overflow: ellipsis;
-//   }
 // }
-// SCROLLBAR
-::-webkit-scrollbar {
-  width: 5px;
-  &-track{
-    background: transparent;
-  }
-  &-thumb{
-    background: $primary-color;
-    border-radius: 1rem;
-  }
-}
+
 
 // STYLE
 // article, .textarea{
@@ -99,19 +132,6 @@ i{
 //   &__input{
 //     position: relative !important;
 //   }
-//   .send{
-//     background-color: $secondary-color;
-//     color: white;
-//     transition: .5s;
-//     position: absolute !important;
-//     top: 0 !important;
-//     right: 300px !important;
-//     &:hover{
-//       background-color: $primary-color;
-//       font-size: 18px;
-//     }
-//   }
-// }
 // .responsive{
 //   display: block !important;
 //   position: absolute !important;
