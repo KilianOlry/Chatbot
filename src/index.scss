@@ -4,9 +4,19 @@ $primary-color: #f5f7fb;
 $secondary-color: #ffffff;
 $text-color: #140F26;
 $text-color-2: #2E4043;
+$bg-message-user: #746373;
 
 // FONT
 $fontfamily: "Roboto", sans-serif;
+
+// MIXINS
+@mixin flex($direction: row, $justify: flex-start, $align: stretch, $wrap: nowrap) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+}
 
 // RESET
 *{
@@ -47,9 +57,7 @@ i{
 .container__navbar{
   background-color: $secondary-color;
   &__navbar{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @include flex(row, space-between, center, no-wrap);
     padding: 10px;
     font-size: 20px;
     &__logo{
@@ -70,8 +78,7 @@ main{
   overflow-y: scroll;
   height: calc(100vh - 100px);
   .bot__list{
-    display: flex;
-    flex-direction: column;
+    @include flex(column, center, no-wrap);
     padding: 10px;
     gap: 10px;
     &__item{
@@ -90,7 +97,7 @@ main{
         overflow: hidden;
         text-overflow: ellipsis;
         &__bot__name{
-          columns: $text-color;
+          color: $text-color;
           font-weight: 500;
         }
         &__bot__message{
@@ -102,29 +109,80 @@ main{
     }
   }
 }
+// RIGHT
+.container__right{
+  width: 100%;
+  padding: 20px;
+  height: calc(100vh - 100px);
+  .textarea{
+    overflow-y: scroll;
+    padding: 30px;
+    height: 100%;
+    border-radius: 10px;
+    background-color: $secondary-color;
+    .container__message__bot{
+      max-width: 50%;
+      .messageBot{
+        display: flex;
+        gap: 10px;
+        img{
+          border-radius: 50%;
+        }
+        .content__message___bot{
+          padding: 15px;
+          background-color: $primary-color;
+          border-radius: 15px;
+            .botName{
+              color: $text-color;
+              font-weight: 500;
+            }
+            .botmessage{
+              columns: $text-color-2;
+              font-weight: 300;
+            }
+            .botDate{
+              text-align: end;
+              margin-top: 10px;
+            }
+        }
+      }
+    }
+    .test{
+      display: flex;
+      justify-content: end;
+    }
+    .container__message__user{
+      max-width: 50%;
+      .message__user{
+        display: flex;
+        justify-content: end;
+        gap: 10px;
+        margin-block: 20px;
+        .message__content{
+          background-color: $bg-message-user;
+          padding: 15px;
+          border-radius: 15px;
+          color: $secondary-color;
+          .user__name{
+            font-weight: 500;
+          }
+          .user__message{
+            font-weight: 300;
+          }
+          .user__date{
+            text-align: end;
+            margin-top: 10px;
+          }
+          }
+          img{
+            border-radius: 50%;
+          }
+        }
+      }
+    }
 
+  }
 
-// .text{
-//   width: 300px;
-// }
-// .container__bot{
-//   overflow-y: auto;
-//   overflow-x: hidden;
-//   background-color: $gray-color;
-//   &__list{
-//     background-color: transparent;
-//   }
-// }
-
-
-// STYLE
-// article, .textarea{
-//   height: calc(100vh - 114px);
-// }
-// .textarea{
-//   overflow-y: auto;
-//   overflow-x: hidden;
-// }
 // .container__input{
 //   position: fixed !important;
 //   bottom: 0 !important;
@@ -142,20 +200,6 @@ main{
 //   background-color: #3c3936;
 // }
 
-// .message_container_bot {
-//   border: solid rgb(216, 216, 216) 1px;
-//   border-radius: 15px !important;
-//   max-width: 65%;
-// }
-
-// .message_container {
-//   border: solid rgb(216, 216, 216) 1px;
-//   border-radius: 15px !important;
-// }
-
-// .preview {
-//   max-width: 330px;
-// }
 // // RESPONSIVE
 // @media screen and (min-width: 997px) {
 //   .main{

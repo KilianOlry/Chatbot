@@ -22,31 +22,29 @@ const Site = class {
           ${viewBots(botDatas)}
         </article>
 
-        <div class='col-12 col-lg-9'>
+        <div class='container__right'>
           <div class='textarea'>
 
-            <div class='row my-2'>
-              <div class='col-12 border-start d-flex flex-direction-column justify-content-start'>
-                <div class='row container__message__bot mt-4'>
+              <div class=''>
+                <div class='container__message__bot'>
                   ${viewMessage()}
                 </div>
               </div>
-            </div>
 
-            <div class='row my-2'>
-              <div class='col-12 d-flex justify-content-end'>
-                <div class='row container__message__user'>
+
+
+              <div class='test'>
+                <div class='container__message__user'>
 
                 </div>
+
               </div>
+
+            <div class='container__input'>
+              ${viewInput()}
             </div>
 
           </div>
-
-          <div class='container__input'>
-            ${viewInput()}
-          </div>
-
         </div>
     </main>
     `;
