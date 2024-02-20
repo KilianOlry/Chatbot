@@ -1,11 +1,16 @@
 export default (botDatas) => (`
-<ul class="list-group list-group-flush botCard">
+<ul class="bot__list">
+  <li class='bot__list__item galery'>
+    <a href="" class='icon-galery-bot'>
+      <i class="ri-gallery-view-2"></i>
+    </a>
+  </li>
   ${botDatas.map((bot) => (
-    `<li class="list-group-item d-flex align-items-center gap-2">
-      <img src="${bot.image}" alt="${bot.name}" class='inline-block rounded-circle shadow-sm' height='80' width='80' height='80' class="img-thumbnail border-0" alt="profileBot">
-      <div>
-        <p class='fst-italic'>${bot.name}</p>
-        <span class='fst-italic d-inline-block text-truncate preview'>${bot.actions.name}</span>
+    `<li class="bot__list__item" >
+      <img src="${bot.image}" alt="${bot.name}" class='' height='80' width='80' height='80' class="img-thumbnail border-0" alt="profileBot">
+      <div class='__description'>
+        <p class='__description__bot__name'>${bot.name}</p>
+        <span class='__description__bot__message'>${bot.actions.name}</span>
       </div>
     </li>`
   )).join('')}

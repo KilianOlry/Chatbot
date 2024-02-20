@@ -32,17 +32,13 @@ const Chat = class {
 
   render(content) {
     return `
-    <div class="message messageBot d-flex gap-2 mt-4">
-      <div class='message_container shadow px-3 rounded-1'>
-          <p class='mt-2'>Matéo Grange</p>
-          <p>${content}</p>
-          <div class='d-flex justify-content-end'>
-            <p class='rounded-2 m-2 px-2 d-inline bg-primary text-white fs-6 fst-italic'>15/02/2024</p>
-          </div>
+    <div class="message__user messageBot">
+      <div class='message__content'>
+          <p class='user__name'>Matéo Grange</p>
+          <p class='user__message'>${content}</p>
+          <p class='user__date'>13:04:14 - 15/02/2024</p>
         </div>
-      <div class=' justify-content-end'>
-        <img src="https://i.pinimg.com/564x/47/ba/71/47ba71f457434319819ac4a7cbd9988e.jpg" width='80' class='inline-block rounded-circle shadow-sm' height='80' alt="">
-      </div>
+        <img src="https://i.pinimg.com/564x/47/ba/71/47ba71f457434319819ac4a7cbd9988e.jpg" width='80' class='' height='80' alt="">
     </div>
     `;
   }

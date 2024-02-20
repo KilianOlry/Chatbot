@@ -16,39 +16,33 @@ const Site = class {
   render() {
     return `
     ${viewNav()}
-    <main class="mt-2 main">
-      <div class='row'>
-        <article class='d-none col-lg-3 border-end viewBots'>
+    <main>
+
+        <article class='container__bot'>
           ${viewBots(botDatas)}
         </article>
-        <div class='col-12 col-lg-9'>
-          <div class='textarea px-5'>
 
-            <div class='row my-2'>
-              <div class='col-12 d-flex flex-direction-column justify-content-start'>
-                <div class='row container__message__bot mt-4'>
+        <div class='container__right'>
+          <div class='textarea'>
+
+              <div class=''>
+                <div class='container__message__bot'>
                   ${viewMessage()}
                 </div>
               </div>
-            </div>
 
-            <div class='row my-2'>
-              <div class='col-12 d-flex justify-content-end'>
-                <div class='row container__message__user'>
+              <div class='test'>
+                <div class='container__message__user'>
 
                 </div>
               </div>
+
+            <div class='container__input'>
+              ${viewInput()}
             </div>
 
           </div>
-
-          <div class='row'>
-            ${viewInput()}
-          </div>
-
         </div>
-      </div>
-
     </main>
     `;
   }
@@ -70,7 +64,7 @@ new Router(routes);
 
 // toggle btn
 const toggleBtn = document.querySelector('.toggleBtn');
-const viewUser = document.querySelector('.viewBots');
+const viewUser = document.querySelector('.container__bot');
 
 toggleBtn.addEventListener('click', () => {
   viewUser.classList.toggle('responsive');
