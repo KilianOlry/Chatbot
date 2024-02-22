@@ -1,0 +1,39 @@
+// RESET
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  font-family: $fontfamily;
+  background-color: $primary-color;
+  height: 100vh;
+}
+ul{
+  list-style: none;
+}
+a{
+  text-decoration: none;
+}
+i{
+  cursor: pointer;
+}
+.container{
+  max-width: 1200px;
+  margin: 0 auto;
+}
+main{
+  display: flex;
+  position: relative;
+}
+// SCROLLBAR
+::-webkit-scrollbar {
+  width: 5px;
+  &-track{
+    background: $primary-color;
+  }
+  &-thumb{
+    background: $bg-message-user;
+    border-radius: 1rem;
+  }
+}

@@ -1,0 +1,74 @@
+.container__right{
+  width: 100%;
+  padding: 20px;
+  height: calc(100vh - 100px);
+  .textarea{
+    position: relative;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 30px;
+    height: 100%;
+    border-radius: 10px;
+    background-color: $secondary-color;
+    .container__message__bot{
+      max-width: 50%;
+      .messageBot{
+        display: flex;
+        gap: 10px;
+        img{
+          border-radius: 50%;
+        }
+        .content__message___bot{
+          padding: 15px;
+          background-color: $primary-color;
+          border-radius: 15px;
+            .botName{
+              color: $text-color;
+              font-weight: 500;
+            }
+            .botmessage{
+              columns: $text-color-2;
+              font-weight: 300;
+            }
+            .botDate{
+              text-align: end;
+              margin-top: 10px;
+            }
+        }
+      }
+    }
+    .test{
+      display: flex;
+      justify-content: end;
+    }
+    .container__message__user{
+      max-width: 50%;
+      .message__user{
+        display: flex;
+        justify-content: end;
+        gap: 10px;
+        margin-block: 20px;
+        .message__content{
+          background-color: $bg-message-user;
+          padding: 15px;
+          border-radius: 15px;
+          color: $secondary-color;
+          .user__name{
+            font-weight: 500;
+          }
+          .user__message{
+            font-weight: 300;
+          }
+          .user__date{
+            text-align: end;
+            margin-top: 10px;
+          }
+          }
+          img{
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+
+  }
