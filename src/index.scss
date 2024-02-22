@@ -102,8 +102,8 @@ main{
         border-radius: 50%;
       }
       .__description {
-        white-space: nowrap; 
-        width: 100%; 
+        white-space: nowrap;
+        width: 100%;
         overflow: hidden;
         text-overflow: ellipsis;
         &__bot__name{
@@ -270,4 +270,29 @@ main{
   width: 300px;
   z-index: 100;
   background-color: $bg-message-user;
+}
+
+.main-error{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+  .fof{
+    transition: all 0.6s;
+    h1{
+      color: #888;
+      font-size: 50px;
+      display: inline-block;
+      padding-right: 12px;
+      animation: type .5s alternate infinite;
+      transition: all 0.6s;
+    }
+  }
+}
+
+@keyframes type{
+  from{box-shadow: inset -3px 0px 0px #888;}
+  to{box-shadow: inset -3px 0px 0px transparent;}
 }
