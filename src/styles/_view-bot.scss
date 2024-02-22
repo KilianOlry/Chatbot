@@ -1,0 +1,45 @@
+// VIEW BOT
+.container__bot{
+  max-width: 350px;
+  overflow-y: scroll;
+  height: calc(100vh - 100px);
+  .bot__list{
+    @include flex(column, center, no-wrap);
+    padding: 20px 10px;
+    gap: 16px;
+    .galery{
+      display: none;
+    }
+    &__item{
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 10px;
+      background-color: $secondary-color;
+      border-radius: 10px;
+      transition: .4s ease-in;
+      &:hover{
+        background-color: $color-btn;
+        color: $secondary-color;
+      }
+      img{
+        border-radius: 50%;
+      }
+      .__description {
+        white-space: nowrap;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        &__bot__name{
+          color: $text-color;
+          font-weight: 500;
+        }
+        &__bot__message{
+          columns: $text-color-2;
+          font-weight: 300;
+          font-style: italic;
+        }
+      }
+    }
+  }
+}

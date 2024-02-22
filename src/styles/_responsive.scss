@@ -1,0 +1,46 @@
+// RESPONSIVE
+@media screen and (max-width: 1200px) {
+  .container__message__user, .container__message__bot{
+    max-width: 100% !important;
+  }
+}
+@media screen and (max-width: 720px) {
+  .container__bot{
+    display: none;
+  }
+  #toggleBtn{
+    display: block;
+  }
+  .icon-galery{
+    display: none;
+  }
+  .icon-galery-bot{
+    display: flex !important;
+    color: $text-color;
+    i{
+      display: block !important;
+    }
+  }
+}
+@media screen and (max-width: 450px) {
+  #input{
+    width: 230px;
+  }
+  .messageBot{
+    flex-direction: column;
+    img{
+      width: 50px;
+      height: 50px;
+    }
+  }
+}
+
+.responsive{
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  z-index: 100;
+  background-color: $bg-message-user;
+}

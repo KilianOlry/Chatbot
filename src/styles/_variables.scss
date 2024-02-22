@@ -1,0 +1,19 @@
+// COLORS
+$primary-color: #f5f7fb;
+$secondary-color: #ffffff;
+$text-color: #140F26;
+$text-color-2: #2E4043;
+$bg-message-user: #746373;
+$color-btn: #3ba58b;
+
+// FONT
+$fontfamily: "Roboto", sans-serif;
+
+// MIXINS
+@mixin flex($direction: row, $justify: flex-start, $align: stretch, $wrap: nowrap) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+}
