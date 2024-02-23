@@ -1,10 +1,10 @@
 import viewNav from '../views/nav';
-import viewBots from '../views/chatBot/viewBots';
-import viewInput from '../views/chatBot/viewInput';
-import viewMessage from '../views/chatBot/viewMessage';
-import botDatas from '../models/Bot';
+import viewBots from '../views/chat-bot/bots';
+import viewInput from '../views/chat-bot/input';
+import viewMessage from '../views/chat-bot/message';
+import botDatas from '../models/entite';
 
-const Site = class {
+const Home = class {
   constructor() {
     this.el = document.getElementById('app');
   }
@@ -48,7 +48,7 @@ const Site = class {
   }
 };
 
-const showSite = new Site();
+const showSite = new Home();
 
 showSite.run();
 
@@ -60,4 +60,4 @@ toggleBtn.addEventListener('click', () => {
   viewUser.classList.toggle('responsive');
 });
 
-export default Site;
+export default Home;

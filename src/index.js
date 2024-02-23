@@ -7,10 +7,6 @@ import './controllers/Home';
 const routes = [{
   url: '/chat',
   controller: Chat
-},
-{
-  url: '/',
-  controller: Chat
 }];
 
 new Router(routes);

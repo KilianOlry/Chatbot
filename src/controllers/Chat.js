@@ -38,7 +38,7 @@ const Chat = class {
           <p class='user__message'>${content}</p>
           <p class='user__date'>13:04:14 - 15/02/2024</p>
         </div>
-        <img src="https://i.pinimg.com/564x/47/ba/71/47ba71f457434319819ac4a7cbd9988e.jpg" width='80' class='' height='80' alt="">
+        <img src="https://i.pinimg.com/564x/47/ba/71/47ba71f457434319819ac4a7cbd9988e.jpg" width='80' height='80' alt="">
     </div>
     `;
   }
