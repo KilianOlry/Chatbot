@@ -19,11 +19,19 @@ const Chat = class {
   onKeyPressed() {
     const elInputChat = document.querySelector('.form-control');
 
+    const responses = {
+      'bonjour': 'Bonjour ! Comment allez-vous ?',
+      'comment ca va': 'Je vais bien, merci ! Et vous ?'
+    };
+
     elInputChat.addEventListener('keyup', (event) => {
       if (event.key === 'Enter') {
         const keyWord = elInputChat.value;
         elInputChat.value = '';
+
+        const botResponse = responses[keyWord] || 'Désolé, je ne comprends pas.';
         this.message.innerHTML += this.render(keyWord);
+        this.message.innerHTML += this.render(botResponse);
         this.saveMessage(keyWord);
       }
     });
