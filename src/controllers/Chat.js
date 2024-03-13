@@ -7,6 +7,15 @@ const Chat = class {
     this.run();
   }
 
+  saveMessage(message) {
+    let messages = JSON.parse(localStorage.getItem('messages')) || [];
+    messages.push(message);
+    if (messages.length > 50) {
+      messages = messages.slice(messages.length - 50);
+    }
+    localStorage.setItem('messages', JSON.stringify(messages));
+  }
+
   onKeyPressed() {
     const elInputChat = document.querySelector('.form-control');
 
@@ -15,6 +24,7 @@ const Chat = class {
         const keyWord = elInputChat.value;
         elInputChat.value = '';
         this.message.innerHTML += this.render(keyWord);
+        this.saveMessage(keyWord);
       }
     });
   }
@@ -27,6 +37,7 @@ const Chat = class {
       const keyWord = elInputChat.value;
       elInputChat.value = '';
       this.message.innerHTML += this.render(keyWord);
+      this.saveMessage(keyWord);
     });
   }
 
