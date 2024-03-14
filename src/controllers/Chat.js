@@ -34,8 +34,10 @@ const Chat = class {
     elInputButton.addEventListener('click', () => {
       const messageContainer = document.querySelector('.container__message__user');
       const keyWord = elInputChat.value;
-      messageContainer.innerHTML += this.renderMessage(keyWord);
-      elInputChat.value = '';
+      if (keyWord !== '') {
+        messageContainer.innerHTML += this.renderMessage(keyWord);
+        elInputChat.value = '';
+      }
     });
   }
 
