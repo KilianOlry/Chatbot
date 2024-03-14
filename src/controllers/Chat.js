@@ -13,16 +13,32 @@ const Chat = class {
     this.run();
   }
 
+  saveMessage(message) {
+    let messages = JSON.parse(localStorage.getItem('messages')) || [];
+    messages.push(message);
+    if (messages.length > 50) {
+      messages = messages.slice(messages.length - 50);
+    }
+    localStorage.setItem('messages', JSON.stringify(messages));
+  }
+
   onKeyPressed() {
     const elInputChat = document.querySelector('.form-control');
+    
+    const responses = {
+      'bonjour': 'Bonjour ! Comment allez-vous ?',
+      'comment ca va': 'Je vais bien, merci ! Et vous ?'
+    };
 
-    elInputChat.addEventListener('keyup', (e) => {
-      const keyWord = elInputChat.value;
-
-      if (e.keyCode === 13 && keyWord !== '') {
-        const messageContainer = document.querySelector('.container__message__user');
-        messageContainer.innerHTML += this.renderMessage(keyWord);
+    elInputChat.addEventListener('keyup', (event) => {
+      if (event.key === 'Enter') {
+        const keyWord = elInputChat.value;
         elInputChat.value = '';
+
+        const botResponse = responses[keyWord] || 'Désolé, je ne comprends pas.';
+        this.message.innerHTML += this.render(keyWord);
+        this.message.innerHTML += this.render(botResponse);
+        this.saveMessage(keyWord);
       }
     });
   }
@@ -36,6 +52,7 @@ const Chat = class {
       const keyWord = elInputChat.value;
       if (keyWord !== '') {
         messageContainer.innerHTML += this.renderMessage(keyWord);
+        this.saveMessage(keyWord);
         elInputChat.value = '';
       }
     });
