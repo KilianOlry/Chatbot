@@ -24,21 +24,22 @@ const Chat = class {
 
   onKeyPressed() {
     const elInputChat = document.querySelector('.form-control');
-    
+
     const responses = {
-      'bonjour': 'Bonjour ! Comment allez-vous ?',
+      bonjour: 'Bonjour ! Comment allez-vous ?',
       'comment ca va': 'Je vais bien, merci ! Et vous ?'
     };
+    const messageContainer = document.querySelector('.container__message__user');
 
-    elInputChat.addEventListener('keyup', (event) => {
-      if (event.key === 'Enter') {
-        const keyWord = elInputChat.value;
-        elInputChat.value = '';
+    elInputChat.addEventListener('keyup', (e) => {
+      const keyWord = elInputChat.value;
 
+      if (e.keyCode === 13 && keyWord !== '') {
         const botResponse = responses[keyWord] || 'Désolé, je ne comprends pas.';
-        this.message.innerHTML += this.render(keyWord);
-        this.message.innerHTML += this.render(botResponse);
+        messageContainer.innerHTML += this.renderMessage(keyWord);
+        messageContainer.innerHTML += this.renderMessage(botResponse);
         this.saveMessage(keyWord);
+        elInputChat.value = '';
       }
     });
   }
