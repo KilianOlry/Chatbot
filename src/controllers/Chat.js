@@ -29,17 +29,16 @@ const Chat = class {
       bonjour: 'Bonjour ! Comment allez-vous ?',
       'comment ca va': 'Je vais bien, merci ! Et vous ?'
     };
-    const messageContainer = document.querySelector('.container__message__user');
+    const listMessage = document.querySelector('.textarea');
 
     elInputChat.addEventListener('keyup', (e) => {
       const keyWord = elInputChat.value;
 
       if (e.keyCode === 13 && keyWord !== '') {
         const botResponse = responses[keyWord] || 'Désolé, je ne comprends pas.';
-        messageContainer.innerHTML += this.renderMessage(keyWord);
-        messageContainer.innerHTML += this.renderMessage(botResponse);
+        listMessage.innerHTML += this.renderMessage(keyWord);
+        listMessage.innerHTML += viewMessage(botResponse);
         this.saveMessage(keyWord);
-        elInputChat.value = '';
       }
     });
   }
@@ -49,10 +48,10 @@ const Chat = class {
     const elInputButton = document.querySelector('.btn-input');
 
     elInputButton.addEventListener('click', () => {
-      const messageContainer = document.querySelector('.container__message__user');
+      const listMessage = document.querySelector('.textarea');
       const keyWord = elInputChat.value;
       if (keyWord !== '') {
-        messageContainer.innerHTML += this.renderMessage(keyWord);
+        listMessage.innerHTML += this.renderMessage(keyWord);
         this.saveMessage(keyWord);
         elInputChat.value = '';
       }
@@ -61,13 +60,17 @@ const Chat = class {
 
   renderMessage(content) {
     return `
-    <div class="message__user messageBot">
-      <div class='message__content'>
-          <p class='user__name'>Matéo Grange</p>
-          <p class='user__message'>${content}</p>
-          <p class='user__date'>${new Date().toLocaleDateString('fr')}</p>
+    <div class='user'>
+      <div class='container__message__user'>
+        <div class="message__user messageBot">
+          <div class='message__content'>
+              <p class='user__name'>Matéo Grange</p>
+              <p class='user__message'>${content}</p>
+              <p class='user__date'>${new Date().toLocaleDateString('fr')}</p>
+          </div>
+            <img src="https://i.pinimg.com/564x/47/ba/71/47ba71f457434319819ac4a7cbd9988e.jpg" width='80' height='80' alt="">
         </div>
-        <img src="https://i.pinimg.com/564x/47/ba/71/47ba71f457434319819ac4a7cbd9988e.jpg" width='80' height='80' alt="">
+      </div>
     </div>
     `;
   }
@@ -82,18 +85,6 @@ const Chat = class {
 
         <div class='container__right'>
           <div class='textarea'>
-
-              <div class=''>
-                <div class='container__message__bot'>
-                  ${viewMessage()}
-                </div>
-              </div>
-
-              <div class='test'>
-                <div class='container__message__user'>
-
-                </div>
-              </div>
 
             <div class='container__input'>
               ${viewInput()}
