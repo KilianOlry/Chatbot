@@ -6,7 +6,7 @@ export default () => (`
   <div class='content__message___bot'>
     <p class='botName'>Thomas Shelby</p>
     <p class='botmessage'>No Fighting. No F***ing Fighting, No Fighting. No F***ing Fighting</p>
-      <p class='botDate'>13:04:14 - 15/02/2024</p>
+      <p class='botDate'>${new Date().toLocaleDateString('fr')}</p>
   </div>
 </div>
 `);
