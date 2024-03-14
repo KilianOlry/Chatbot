@@ -1,3 +1,9 @@
+import viewNav from '../views/nav';
+import viewBots from '../views/chat-bot/bots';
+import viewInput from '../views/chat-bot/input';
+import viewMessage from '../views/chat-bot/message';
+import botDatas from '../models/entite';
+
 const Chat = class {
   constructor() {
     this.el = document.getElementById('app');
@@ -18,7 +24,7 @@ const Chat = class {
 
   onKeyPressed() {
     const elInputChat = document.querySelector('.form-control');
-
+    
     const responses = {
       'bonjour': 'Bonjour ! Comment allez-vous ?',
       'comment ca va': 'Je vais bien, merci ! Et vous ?'
@@ -42,30 +48,73 @@ const Chat = class {
     const elInputButton = document.querySelector('.btn-input');
 
     elInputButton.addEventListener('click', () => {
+      const messageContainer = document.querySelector('.container__message__user');
       const keyWord = elInputChat.value;
-      elInputChat.value = '';
-      this.message.innerHTML += this.render(keyWord);
-      this.saveMessage(keyWord);
+      if (keyWord !== '') {
+        messageContainer.innerHTML += this.renderMessage(keyWord);
+        this.saveMessage(keyWord);
+        elInputChat.value = '';
+      }
     });
   }
 
-  render(content) {
+  renderMessage(content) {
     return `
     <div class="message__user messageBot">
       <div class='message__content'>
           <p class='user__name'>Matéo Grange</p>
           <p class='user__message'>${content}</p>
-          <p class='user__date'>13:04:14 - 15/02/2024</p>
+          <p class='user__date'>${new Date()}</p>
         </div>
         <img src="https://i.pinimg.com/564x/47/ba/71/47ba71f457434319819ac4a7cbd9988e.jpg" width='80' height='80' alt="">
     </div>
     `;
   }
 
+  renderSkeleton() {
+    return `
+      ${viewNav()}
+      <main>
+        <article class='container__bot'>
+          ${viewBots(botDatas)}
+        </article>
+
+        <div class='container__right'>
+          <div class='textarea'>
+
+              <div class=''>
+                <div class='container__message__bot'>
+                  ${viewMessage()}
+                </div>
+              </div>
+
+              <div class='test'>
+                <div class='container__message__user'>
+
+                </div>
+              </div>
+
+            <div class='container__input'>
+              ${viewInput()}
+            </div>
+
+          </div>
+        </div>
+      </main>
+    `;
+  }
+
   run() {
+    this.el.innerHTML = this.renderSkeleton();
     this.onKeyPressed();
     this.onClickButton();
   }
 };
+// toggle btn
+// const toggleBtn = document.querySelector('.toggleBtn');
+// const viewUser = document.querySelector('.container__bot');
 
+// toggleBtn.addEventListener('click', () => {
+//   viewUser.classList.toggle('responsive');
+// });
 export default Chat;
