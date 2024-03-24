@@ -36,9 +36,10 @@ const Chat = class {
 
       if (e.keyCode === 13 && keyWord !== '') {
         const botResponse = responses[keyWord] || 'Désolé, je ne comprends pas.';
-        listMessage.innerHTML += this.renderMessage(keyWord);
-        listMessage.innerHTML += viewMessage(botResponse);
+        listMessage.insertAdjacentHTML('beforeend', this.renderMessage(keyWord));
+        listMessage.insertAdjacentHTML('beforeend', viewMessage(botResponse));
         this.saveMessage(keyWord);
+        elInputChat.value = '';
       }
     });
   }
@@ -47,11 +48,18 @@ const Chat = class {
     const elInputChat = document.querySelector('.form-control');
     const elInputButton = document.querySelector('.btn-input');
 
+    const responses = {
+      bonjour: 'Bonjour ! Comment allez-vous ?',
+      'comment ca va': 'Je vais bien, merci ! Et vous ?'
+    };
+
     elInputButton.addEventListener('click', () => {
       const listMessage = document.querySelector('.textarea');
       const keyWord = elInputChat.value;
       if (keyWord !== '') {
-        listMessage.innerHTML += this.renderMessage(keyWord);
+        const botResponse = responses[keyWord] || 'Désolé, je ne comprends pas.';
+        listMessage.insertAdjacentHTML('beforeend', this.renderMessage(keyWord));
+        listMessage.insertAdjacentHTML('beforeend', viewMessage(botResponse));
         this.saveMessage(keyWord);
         elInputChat.value = '';
       }
