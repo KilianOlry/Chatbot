@@ -104,17 +104,20 @@ const Chat = class {
     `;
   }
 
+  toggleBtn() {
+    const toggleBtn = document.querySelector('.toggleBtn');
+    const viewUser = document.querySelector('.container__bot');
+    toggleBtn.addEventListener('click', () => {
+      viewUser.classList.toggle('responsive');
+    });
+  }
+
   run() {
     this.el.innerHTML = this.renderSkeleton();
+    this.toggleBtn();
     this.onKeyPressed();
     this.onClickButton();
   }
 };
-// toggle btn
-// const toggleBtn = document.querySelector('.toggleBtn');
-// const viewUser = document.querySelector('.container__bot');
 
-// toggleBtn.addEventListener('click', () => {
-//   viewUser.classList.toggle('responsive');
-// });
 export default Chat;
