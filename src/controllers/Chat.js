@@ -118,7 +118,10 @@ const Chat = class {
     const apiUrl = 'http://localhost/messages';
     try {
       const response = await axios.get(apiUrl);
-      console.log(response);
+      const listMessage = document.querySelector('.textarea');
+      // eslint-disable-next-line prefer-destructuring
+      const data = response.data;
+      data.map((message) => (listMessage.insertAdjacentHTML('beforeend', viewMessage(JSON.stringify(message))))).join('');
     } catch (error) {
       console.error(error);
     }

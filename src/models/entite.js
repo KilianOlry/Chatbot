@@ -7,7 +7,7 @@ const entitie = [{
     name: 'No Fighting. No F***ing Fighting, No Fighting, NO F*',
     action: async () => {
       let weatherData = '';
-      const apiKey = '';
+      const apiKey = 'fd278a1ce2bcdec4bbddf662b7409c40';
       const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Paris&units=metric&lang=fr&appid=${apiKey}`;
       try {
         const response = await axios.get(apiUrl);
