@@ -121,7 +121,7 @@ const Chat = class {
       const listMessage = document.querySelector('.textarea');
       // eslint-disable-next-line prefer-destructuring
       const data = response.data;
-      data.map((message) => (listMessage.insertAdjacentHTML('beforeend', viewMessage(JSON.stringify(message))))).join('');
+      data.map((message) => (listMessage.insertAdjacentHTML('beforeend', viewMessage(message)))).join('');
     } catch (error) {
       console.error(error);
     }
