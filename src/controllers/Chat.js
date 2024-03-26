@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import viewNav from '../views/nav';
 import viewBots from '../views/chat-bot/bots';
 import viewInput from '../views/chat-bot/input';
@@ -104,17 +106,31 @@ const Chat = class {
     `;
   }
 
+  toggleBtn() {
+    const toggleBtn = document.querySelector('.toggleBtn');
+    const viewUser = document.querySelector('.container__bot');
+    toggleBtn.addEventListener('click', () => {
+      viewUser.classList.toggle('responsive');
+    });
+  }
+
+  async connectBackEnd() {
+    const apiUrl = 'http://localhost/messages';
+    try {
+      const response = await axios.get(apiUrl);
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   run() {
     this.el.innerHTML = this.renderSkeleton();
+    this.toggleBtn();
     this.onKeyPressed();
     this.onClickButton();
+    this.connectBackEnd();
   }
 };
-// toggle btn
-// const toggleBtn = document.querySelector('.toggleBtn');
-// const viewUser = document.querySelector('.container__bot');
 
-// toggleBtn.addEventListener('click', () => {
-//   viewUser.classList.toggle('responsive');
-// });
 export default Chat;

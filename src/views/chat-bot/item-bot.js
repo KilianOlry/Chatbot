@@ -6,6 +6,7 @@ export default (data) => {
     <div class='__description'>
       <p class='__description__bot__name'>${name}</p>
       <span class='__description__bot__message'>${actions.name}</span>
+      <span class='__description__bot__message'>${actions.action()}</span>
     </div>
   </li>
   `;
