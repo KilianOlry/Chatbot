@@ -7,7 +7,7 @@ export default (botResponse) => (`
       </div>
     <div class='content__message___bot'>
       <p class='botName'>${botResponse.author || 'Thomas Shelby'}</p>
-      <p class='botmessage'>${botResponse.type || botResponse}</p>
+      <p class='botmessage'>${botResponse.text || botResponse}</p>
       <p class='botDate'>${new Date().toLocaleDateString('fr')}</p>
     </div>
     </div>
