@@ -5,9 +5,11 @@ import viewBots from '../views/chat-bot/bots';
 import viewInput from '../views/chat-bot/input';
 import viewMessage from '../views/chat-bot/message';
 import botDatas from '../models/entite';
+import BotActions from '../classes/BotActions';
 
-const Chat = class {
+const Chat = class extends BotActions {
   constructor() {
+    super();
     this.el = document.getElementById('app');
     this.message = document.querySelector('.container__message__user');
     this.data = [];
@@ -36,9 +38,7 @@ const Chat = class {
     elInputChat.addEventListener('keyup', (e) => {
       const keyWord = elInputChat.value;
       if (e.keyCode === 13 && keyWord !== '') {
-        if (keyWord.split(' ').splice(0)) {
-          this.meteo(keyWord);
-        }
+        this.meteo(keyWord);
         const botResponse = responses[keyWord] || 'Désolé, je ne comprends pas.';
         listMessage.insertAdjacentHTML('beforeend', this.renderMessage(keyWord));
         listMessage.insertAdjacentHTML('beforeend', viewMessage(botResponse));
@@ -46,20 +46,6 @@ const Chat = class {
         elInputChat.value = '';
       }
     });
-  }
-
-  async meteo(keyword) {
-    let weatherData = '';
-    const city = keyword.split(' ').splice(-1);
-    const apiKey = 'fd278a1ce2bcdec4bbddf662b7409c40';
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=fr&appid=${apiKey}`;
-    try {
-      const response = await axios.get(apiUrl);
-      weatherData = response.data;
-    } catch (error) {
-      console.error(error);
-    }
-    return console.log(weatherData.main.temp);
   }
 
   onClickButton() {
