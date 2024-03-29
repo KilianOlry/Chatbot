@@ -29,26 +29,22 @@ const Chat = class extends BotActions {
   onKeyPressed() {
     const elInputChat = document.querySelector('.form-control');
 
-    const responses = {
-      bonjour: 'Bonjour ! Comment allez-vous ?',
-      'comment ca va': 'Je vais bien, merci ! Et vous ?'
-    };
     const listMessage = document.querySelector('.textarea');
-
-    elInputChat.addEventListener('keyup', (e) => {
+    elInputChat.addEventListener('keyup', async (e) => {
+      let data = '';
       const keyWord = elInputChat.value;
 
       if (e.keyCode === 13 && keyWord !== '') {
         const mots = keyWord.split(' ');
         if (mots.length >= 2) {
           const city = mots[1];
-          this.meteo(city);
+          data = await this.meteo(city);
+          const botResponse = data || 'Désolé, je ne comprends pas.';
+          listMessage.insertAdjacentHTML('beforeend', this.renderMessage(keyWord));
+          listMessage.insertAdjacentHTML('beforeend', viewMessage(botResponse));
         } else {
           console.log('La phrase doit contenir au moins deux mots.');
         }
-        const botResponse = responses[keyWord] || 'Désolé, je ne comprends pas.';
-        listMessage.insertAdjacentHTML('beforeend', this.renderMessage(keyWord));
-        listMessage.insertAdjacentHTML('beforeend', viewMessage(botResponse));
         this.saveMessage(keyWord);
         elInputChat.value = '';
       }
