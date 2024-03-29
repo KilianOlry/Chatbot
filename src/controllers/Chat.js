@@ -37,8 +37,15 @@ const Chat = class extends BotActions {
 
     elInputChat.addEventListener('keyup', (e) => {
       const keyWord = elInputChat.value;
+
       if (e.keyCode === 13 && keyWord !== '') {
-        this.meteo(keyWord);
+        const mots = keyWord.split(' ');
+        if (mots.length >= 2) {
+          const city = mots[1];
+          this.meteo(city);
+        } else {
+          console.log('La phrase doit contenir au moins deux mots.');
+        }
         const botResponse = responses[keyWord] || 'Désolé, je ne comprends pas.';
         listMessage.insertAdjacentHTML('beforeend', this.renderMessage(keyWord));
         listMessage.insertAdjacentHTML('beforeend', viewMessage(botResponse));

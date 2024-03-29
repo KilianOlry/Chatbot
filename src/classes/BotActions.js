@@ -5,9 +5,8 @@ const BotActions = class {
     this.meteo();
   }
 
-  async meteo(keyword) {
+  async meteo(city) {
     let weatherData = '';
-    const city = keyword.split(' ').splice(-1);
     const apiKey = 'fd278a1ce2bcdec4bbddf662b7409c40';
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=fr&appid=${apiKey}`;
     try {
