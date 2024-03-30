@@ -12,10 +12,11 @@ const BotActions = class {
     try {
       const response = await axios.get(apiUrl);
       weatherData = response.data;
+      return weatherData.main.temp;
     } catch (error) {
       console.error(error);
+      return false;
     }
-    return console.log(weatherData.main.temp);
   }
 
   run() {

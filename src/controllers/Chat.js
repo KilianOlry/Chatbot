@@ -29,26 +29,24 @@ const Chat = class extends BotActions {
   onKeyPressed() {
     const elInputChat = document.querySelector('.form-control');
 
-    const responses = {
-      bonjour: 'Bonjour ! Comment allez-vous ?',
-      'comment ca va': 'Je vais bien, merci ! Et vous ?'
-    };
     const listMessage = document.querySelector('.textarea');
+    elInputChat.addEventListener('keyup', async (e) => {
+      let data = '';
+      const inputValue = elInputChat.value;
 
-    elInputChat.addEventListener('keyup', (e) => {
-      const keyWord = elInputChat.value;
-
-      if (e.keyCode === 13 && keyWord !== '') {
-        const mots = keyWord.split(' ');
-        if (mots.length >= 2) {
-          const city = mots[1];
-          this.meteo(city);
+      if (e.keyCode === 13 && inputValue !== '') {
+        const keyWord = inputValue.split(' ');
+        if (keyWord.length >= 2) {
+          const action = keyWord[1];
+          data = await this.meteo(action);
+          const botResponse = data || 'Cette commande ne correspond à aucun bot';
+          listMessage.insertAdjacentHTML('beforeend', this.renderMessage(keyWord));
+          listMessage.insertAdjacentHTML('beforeend', viewMessage(botResponse));
         } else {
-          console.log('La phrase doit contenir au moins deux mots.');
+          const botResponse = data || 'Cette commande ne correspond à aucun bot';
+          listMessage.insertAdjacentHTML('beforeend', this.renderMessage(keyWord));
+          listMessage.insertAdjacentHTML('beforeend', viewMessage(botResponse));
         }
-        const botResponse = responses[keyWord] || 'Désolé, je ne comprends pas.';
-        listMessage.insertAdjacentHTML('beforeend', this.renderMessage(keyWord));
-        listMessage.insertAdjacentHTML('beforeend', viewMessage(botResponse));
         this.saveMessage(keyWord);
         elInputChat.value = '';
       }
@@ -58,19 +56,25 @@ const Chat = class extends BotActions {
   onClickButton() {
     const elInputChat = document.querySelector('.form-control');
     const elInputButton = document.querySelector('.btn-input');
+    const listMessage = document.querySelector('.textarea');
 
-    const responses = {
-      bonjour: 'Bonjour ! Comment allez-vous ?',
-      'comment ca va': 'Je vais bien, merci ! Et vous ?'
-    };
+    elInputButton.addEventListener('click', async () => {
+      let data = '';
+      const inputValue = elInputChat.value;
 
-    elInputButton.addEventListener('click', () => {
-      const listMessage = document.querySelector('.textarea');
-      const keyWord = elInputChat.value;
-      if (keyWord !== '') {
-        const botResponse = responses[keyWord] || 'Désolé, je ne comprends pas.';
-        listMessage.insertAdjacentHTML('beforeend', this.renderMessage(keyWord));
-        listMessage.insertAdjacentHTML('beforeend', viewMessage(botResponse));
+      if (inputValue !== '') {
+        const keyWord = inputValue.split(' ');
+        if (keyWord.length >= 2) {
+          const action = keyWord[1];
+          data = await this.meteo(action);
+          const botResponse = data || 'Cette commande ne correspond à aucun bot';
+          listMessage.insertAdjacentHTML('beforeend', this.renderMessage(keyWord));
+          listMessage.insertAdjacentHTML('beforeend', viewMessage(botResponse));
+        } else {
+          const botResponse = data || 'Cette commande ne correspond à aucun bot';
+          listMessage.insertAdjacentHTML('beforeend', this.renderMessage(keyWord));
+          listMessage.insertAdjacentHTML('beforeend', viewMessage(botResponse));
+        }
         this.saveMessage(keyWord);
         elInputChat.value = '';
       }
