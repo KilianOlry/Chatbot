@@ -3,7 +3,7 @@ import axios from 'axios';
 import viewNav from '../views/nav';
 import viewBots from '../views/chat-bot/bots';
 import viewInput from '../views/chat-bot/input';
-import viewMessage from '../views/chat-bot/message';
+import viewMessageBot from '../views/chat-bot/message';
 import botDatas from '../models/entite';
 import BotActions from '../classes/BotActions';
 
@@ -31,53 +31,28 @@ const Chat = class extends BotActions {
 
     const listMessage = document.querySelector('.textarea');
     elInputChat.addEventListener('keyup', async (e) => {
-      let data = '';
       const inputValue = elInputChat.value;
 
       if (e.keyCode === 13 && inputValue !== '') {
         const keyWord = inputValue.split(' ');
         if (keyWord.length >= 2) {
-          const action = keyWord[1];
-          const test = keyWord[0];
-          data = await this.meteo(action);
+          const actions = keyWord[1];
+          const botName = keyWord[0];
 
-          if (typeof this[test] === 'function') {
-            const botResponse = data || 'Cette commande ne correspond à aucun bot';
-            listMessage.insertAdjacentHTML('beforeend', this.renderMessage(keyWord));
-            listMessage.insertAdjacentHTML('beforeend', viewMessage(botResponse));
-          } else {
-            const botResponse = data || 'Cette commande ne correspond à aucun bot';
-            listMessage.insertAdjacentHTML('beforeend', this.renderMessage(keyWord));
-            listMessage.insertAdjacentHTML('beforeend', viewMessage(botResponse));
+          if (typeof this[botName] === 'function') {
+            const botResponse = await this[botName](actions);
+            botDatas.forEach((element) => {
+              if (element.actions.name === botName) {
+                listMessage.insertAdjacentHTML('beforeend', this.renderMessageUser(keyWord));
+                listMessage.insertAdjacentHTML('beforeend', viewMessageBot(element.name, element.image, botResponse));
+              }
+            });
           }
-        }
-        this.saveMessage(keyWord);
-        elInputChat.value = '';
-      }
-    });
-  }
-
-  onClickButton() {
-    const elInputChat = document.querySelector('.form-control');
-    const elInputButton = document.querySelector('.btn-input');
-    const listMessage = document.querySelector('.textarea');
-
-    elInputButton.addEventListener('click', async () => {
-      let data = '';
-      const inputValue = elInputChat.value;
-
-      if (inputValue !== '') {
-        const keyWord = inputValue.split(' ');
-        if (keyWord.length >= 2) {
-          const action = keyWord[1];
-          data = await this.meteo(action);
-          const botResponse = data || 'Cette commande ne correspond à aucun bot';
-          listMessage.insertAdjacentHTML('beforeend', this.renderMessage(keyWord));
-          listMessage.insertAdjacentHTML('beforeend', viewMessage(botResponse));
         } else {
-          const botResponse = data || 'Cette commande ne correspond à aucun bot';
-          listMessage.insertAdjacentHTML('beforeend', this.renderMessage(keyWord));
-          listMessage.insertAdjacentHTML('beforeend', viewMessage(botResponse));
+          const botError = botDatas.find((element) => element.name === 'Error');
+          const botResponse = 'Désolé cette commande ne correspond à aucun bot';
+          listMessage.insertAdjacentHTML('beforeend', this.renderMessageUser(keyWord));
+          listMessage.insertAdjacentHTML('beforeend', viewMessageBot(botError.name, botError.image, botResponse));
         }
         this.saveMessage(keyWord);
         elInputChat.value = '';
@@ -85,7 +60,7 @@ const Chat = class extends BotActions {
     });
   }
 
-  renderMessage(content) {
+  renderMessageUser(content) {
     return `
     <div class='user'>
       <div class='container__message__user'>
@@ -131,24 +106,24 @@ const Chat = class extends BotActions {
     });
   }
 
-  async connectBackEnd() {
-    const apiUrl = 'http://localhost/messages';
-    try {
-      const response = await axios.get(apiUrl);
-      const listMessage = document.querySelector('.textarea');
-      // eslint-disable-next-line prefer-destructuring
-      const data = response.data;
-      data.map((message) => (listMessage.insertAdjacentHTML('beforeend', viewMessage(message)))).join('');
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  // async connectBackEnd() {
+  //   const apiUrl = 'http://localhost/messages';
+  //   try {
+  //     const response = await axios.get(apiUrl);
+  //     const listMessage = document.querySelector('.textarea');
+  //     // eslint-disable-next-line prefer-destructuring
+  //     const data = response.data;
+  //     data.map((message) =>
+  // (listMessage.insertAdjacentHTML('beforeend', viewMessageBot(message)))).join('');
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
 
   run() {
     this.el.innerHTML = this.renderSkeleton();
     this.toggleBtn();
     this.onKeyPressed();
-    this.onClickButton();
     this.connectBackEnd();
   }
 };
