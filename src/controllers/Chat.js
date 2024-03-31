@@ -38,14 +38,18 @@ const Chat = class extends BotActions {
         const keyWord = inputValue.split(' ');
         if (keyWord.length >= 2) {
           const action = keyWord[1];
+          const test = keyWord[0];
           data = await this.meteo(action);
-          const botResponse = data || 'Cette commande ne correspond à aucun bot';
-          listMessage.insertAdjacentHTML('beforeend', this.renderMessage(keyWord));
-          listMessage.insertAdjacentHTML('beforeend', viewMessage(botResponse));
-        } else {
-          const botResponse = data || 'Cette commande ne correspond à aucun bot';
-          listMessage.insertAdjacentHTML('beforeend', this.renderMessage(keyWord));
-          listMessage.insertAdjacentHTML('beforeend', viewMessage(botResponse));
+
+          if (typeof this[test] === 'function') {
+            const botResponse = data || 'Cette commande ne correspond à aucun bot';
+            listMessage.insertAdjacentHTML('beforeend', this.renderMessage(keyWord));
+            listMessage.insertAdjacentHTML('beforeend', viewMessage(botResponse));
+          } else {
+            const botResponse = data || 'Cette commande ne correspond à aucun bot';
+            listMessage.insertAdjacentHTML('beforeend', this.renderMessage(keyWord));
+            listMessage.insertAdjacentHTML('beforeend', viewMessage(botResponse));
+          }
         }
         this.saveMessage(keyWord);
         elInputChat.value = '';
