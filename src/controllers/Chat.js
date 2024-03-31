@@ -1,4 +1,4 @@
-import axios from 'axios';
+// import axios from 'axios';
 
 import viewNav from '../views/nav';
 import viewBots from '../views/chat-bot/bots';
@@ -54,6 +54,7 @@ const Chat = class extends BotActions {
           listMessage.insertAdjacentHTML('beforeend', this.renderMessageUser(keyWord));
           listMessage.insertAdjacentHTML('beforeend', viewMessageBot(botError.name, botError.image, botResponse));
         }
+        listMessage.scrollTop = listMessage.scrollHeight;
         this.saveMessage(keyWord);
         elInputChat.value = '';
       }
