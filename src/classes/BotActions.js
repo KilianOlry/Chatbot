@@ -1,4 +1,5 @@
 import axios from 'axios';
+import botDatas from '../models/entite';
 
 const BotActions = class {
   constructor() {
@@ -17,6 +18,10 @@ const BotActions = class {
       console.error(error);
       return false;
     }
+  }
+
+  async help() {
+    return botDatas.map((element) => element.name).join('<br>');
   }
 
   run() {

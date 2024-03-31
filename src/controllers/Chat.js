@@ -36,8 +36,8 @@ const Chat = class extends BotActions {
       if (e.keyCode === 13 && inputValue !== '') {
         const keyWord = inputValue.split(' ');
         if (keyWord.length >= 2) {
-          const actions = keyWord[1];
           const botName = keyWord[0];
+          const actions = keyWord[1];
 
           if (typeof this[botName] === 'function') {
             const botResponse = await this[botName](actions);
