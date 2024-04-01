@@ -2,10 +2,6 @@ import axios from 'axios';
 import botDatas from '../models/entite';
 
 const BotActions = class {
-  constructor() {
-    this.meteo();
-  }
-
   async meteo(city) {
     let weatherData = '';
     const apiKey = 'fd278a1ce2bcdec4bbddf662b7409c40';
@@ -15,13 +11,23 @@ const BotActions = class {
       weatherData = response.data;
       return weatherData.main.temp;
     } catch (error) {
-      console.error(error);
       return false;
     }
   }
 
   async help() {
     return botDatas.map((element) => element.name).join('<br>');
+  }
+
+  async voyage(cityName) {
+    const apiKey = '';
+    const apiUrl = `https://api.unsplash.com/search/photos?count=1&query=${cityName}&client_id=${apiKey}`;
+    try {
+      const data = await axios.get(apiUrl);
+      return data.data.results[0].urls.small;
+    } catch {
+      return false;
+    }
   }
 
   run() {

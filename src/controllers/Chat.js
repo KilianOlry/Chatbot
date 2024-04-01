@@ -52,7 +52,7 @@ const Chat = class extends BotActions {
           const botError = botDatas.find((element) => element.name === 'Error');
           const botResponse = 'Désolé cette commande ne correspond à aucun bot';
           listMessage.insertAdjacentHTML('beforeend', this.renderMessageUser(keyWord));
-          listMessage.insertAdjacentHTML('beforeend', viewMessageBot(botError.name, botError.image, botResponse));
+          listMessage.insertAdjacentHTML('beforeend', viewMessageBot(botError.name, botError.image, botResponse, this.isValidURL));
         }
         listMessage.scrollTop = listMessage.scrollHeight;
         this.saveMessage(keyWord);

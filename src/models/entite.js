@@ -23,7 +23,7 @@ const entitie = [{
   name: 'Stéphane Bern',
   image: 'https://www.gala.fr/imgre/fit/~1~gal~2023~06~30~1730db8f-85d9-4b7f-96de-df5a48813f07.png/150x150/quality/80/stephane-bern-son-havre-de-paix-loin-de-paris.jpg',
   actions: {
-    name: 'City'
+    name: 'voyage'
   }
 },
 {
