@@ -30,6 +30,16 @@ const BotActions = class {
     }
   }
 
+  async pokemon(pokemonName) {
+    const apiUrl = `https://tyradex.tech/api/v1/pokemon/${pokemonName}`;
+    try {
+      const data = await axios.get(apiUrl);
+      return data.data.sprites.regular;
+    } catch {
+      return false;
+    }
+  }
+
   run() {
 
   }

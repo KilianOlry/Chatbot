@@ -13,6 +13,13 @@ const entitie = [{
   }
 },
 {
+  name: 'Sacha du Bourg-Palette',
+  image: 'https://th.bing.com/th/id/OIP.jgdB3TbaXO4j0aIy2IPyRAHaFj?w=480&h=360&rs=1&pid=ImgDetMain',
+  actions: {
+    name: 'pokemon'
+  }
+},
+{
   name: 'Stéphane Bern',
   image: 'https://www.gala.fr/imgre/fit/~1~gal~2023~06~30~1730db8f-85d9-4b7f-96de-df5a48813f07.png/150x150/quality/80/stephane-bern-son-havre-de-paix-loin-de-paris.jpg',
   actions: {
