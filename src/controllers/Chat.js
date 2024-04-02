@@ -12,7 +12,6 @@ const Chat = class extends BotActions {
     super();
     this.el = document.getElementById('app');
     this.message = document.querySelector('.container__message__user');
-    this.data = [];
 
     this.run();
   }
@@ -26,74 +25,54 @@ const Chat = class extends BotActions {
     localStorage.setItem('messages', JSON.stringify(messages));
   }
 
-  onKeyPressed() {
-    const elInputChat = document.querySelector('.form-control');
-
+  async callBot(messageUser) {
     const listMessage = document.querySelector('.textarea');
-    elInputChat.addEventListener('keyup', async (e) => {
+    const elInput = document.querySelector('.form-control');
+
+    const keyWord = messageUser.split(' ');
+    if (keyWord.length >= 2) {
+      const botName = keyWord[0];
+      const actions = keyWord[1];
+
+      if (typeof this[botName] === 'function') {
+        const botResponse = await this[botName](actions);
+        botDatas.forEach((element) => {
+          if (element.actions.name === botName) {
+            listMessage.insertAdjacentHTML('beforeend', this.renderMessageUser(keyWord));
+            listMessage.insertAdjacentHTML('beforeend', viewMessageBot(element.name, element.image, botResponse));
+          }
+        });
+      }
+    } else {
+      const botError = botDatas.find((element) => element.name === 'Error');
+      const botResponse = 'Désolé cette commande ne correspond à aucun bot';
+      listMessage.insertAdjacentHTML('beforeend', this.renderMessageUser(keyWord));
+      listMessage.insertAdjacentHTML('beforeend', viewMessageBot(botError.name, botError.image, botResponse, this.isValidURL));
+    }
+    listMessage.scrollTop = listMessage.scrollHeight;
+    elInput.value = '';
+    this.saveMessage(keyWord);
+  }
+
+  sendMessage() {
+    const elInputChat = document.querySelector('.form-control');
+    const btn = document.querySelector('.btn');
+
+    btn.addEventListener('click', () => {
+      const inputValue = elInputChat.value;
+      if (inputValue !== '') {
+        this.callBot(inputValue, elInputChat);
+      }
+      return false;
+    });
+
+    elInputChat.addEventListener('keyup', (e) => {
       const inputValue = elInputChat.value;
 
       if (e.keyCode === 13 && inputValue !== '') {
-        const keyWord = inputValue.split(' ');
-        if (keyWord.length >= 2) {
-          const botName = keyWord[0];
-          const actions = keyWord[1];
-
-          if (typeof this[botName] === 'function') {
-            const botResponse = await this[botName](actions);
-            botDatas.forEach((element) => {
-              if (element.actions.name === botName) {
-                listMessage.insertAdjacentHTML('beforeend', this.renderMessageUser(keyWord));
-                listMessage.insertAdjacentHTML('beforeend', viewMessageBot(element.name, element.image, botResponse));
-              }
-            });
-          }
-        } else {
-          const botError = botDatas.find((element) => element.name === 'Error');
-          const botResponse = 'Désolé cette commande ne correspond à aucun bot';
-          listMessage.insertAdjacentHTML('beforeend', this.renderMessageUser(keyWord));
-          listMessage.insertAdjacentHTML('beforeend', viewMessageBot(botError.name, botError.image, botResponse, this.isValidURL));
-        }
-        listMessage.scrollTop = listMessage.scrollHeight;
-        this.saveMessage(keyWord);
-        elInputChat.value = '';
+        this.callBot(inputValue, elInputChat);
       }
-    });
-  }
-
-  onclick() {
-    const elInputChat = document.querySelector('.form-control');
-    const btn = document.querySelector('.btn');
-    const listMessage = document.querySelector('.textarea');
-
-    btn.addEventListener('click', async () => {
-      const inputValue = elInputChat.value;
-
-      if (inputValue !== '') {
-        const keyWord = inputValue.split(' ');
-        if (keyWord.length >= 2) {
-          const botName = keyWord[0];
-          const actions = keyWord[1];
-
-          if (typeof this[botName] === 'function') {
-            const botResponse = await this[botName](actions);
-            botDatas.forEach((element) => {
-              if (element.actions.name === botName) {
-                listMessage.insertAdjacentHTML('beforeend', this.renderMessageUser(keyWord));
-                listMessage.insertAdjacentHTML('beforeend', viewMessageBot(element.name, element.image, botResponse));
-              }
-            });
-          }
-        } else {
-          const botError = botDatas.find((element) => element.name === 'Error');
-          const botResponse = 'Désolé cette commande ne correspond à aucun bot';
-          listMessage.insertAdjacentHTML('beforeend', this.renderMessageUser(keyWord));
-          listMessage.insertAdjacentHTML('beforeend', viewMessageBot(botError.name, botError.image, botResponse, this.isValidURL));
-        }
-        listMessage.scrollTop = listMessage.scrollHeight;
-        this.saveMessage(keyWord);
-        elInputChat.value = '';
-      }
+      return false;
     });
   }
 
@@ -151,7 +130,7 @@ const Chat = class extends BotActions {
   //     // eslint-disable-next-line prefer-destructuring
   //     const data = response.data;
   //     data.map((message) =>
-  // (listMessage.insertAdjacentHTML('beforeend', viewMessageBot(message)))).join('');
+  //       (listMessage.insertAdjacentHTML('beforeend', viewMessageBot(message)))).join('');
   //   } catch (error) {
   //     console.error(error);
   //   }
@@ -160,9 +139,8 @@ const Chat = class extends BotActions {
   run() {
     this.el.innerHTML = this.renderSkeleton();
     this.toggleBtn();
-    this.onKeyPressed();
-    this.onclick();
-    this.connectBackEnd();
+    // this.connectBackEnd();
+    this.sendMessage();
   }
 };
 
