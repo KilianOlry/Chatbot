@@ -40,6 +40,16 @@ const BotActions = class {
     }
   }
 
+  async f1(driverName) {
+    const apiUrl = `http://ergast.com/api/f1/drivers/${driverName}`;
+    try {
+      const data = await axios.get(apiUrl);
+      return data.data;
+    } catch {
+      return false;
+    }
+  }
+
   run() {
 
   }

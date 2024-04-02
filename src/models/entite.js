@@ -1,8 +1,8 @@
 const entitie = [{
-  name: 'Flash McQueen',
-  image: 'https://www.thedecofactory.com/pub/media/catalog/product/cache/9801f9953c8bc965c65fa73ccb3f71a9/r/m/rmk1518gm_lightning_mcqueen_giant_wall_decal_assembled_product.jpg',
+  name: 'Julien Fébreau',
+  image: 'https://medias.lequipe.fr/img-photo-jpg/julien-febreau-a-vecu-dimanche-le-plus-grand-moment-de-sa-carriere-pierre-emmanuel-rastoin/1500000001376706/0:326,1999:2325-1200-1200-75/e9a5a.jpg',
   actions: {
-    name: 'Cars'
+    name: 'f1'
   }
 },
 {
