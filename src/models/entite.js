@@ -2,7 +2,7 @@ const entitie = [{
   name: 'Julien Fébreau',
   image: 'https://medias.lequipe.fr/img-photo-jpg/julien-febreau-a-vecu-dimanche-le-plus-grand-moment-de-sa-carriere-pierre-emmanuel-rastoin/1500000001376706/0:326,1999:2325-1200-1200-75/e9a5a.jpg',
   actions: {
-    name: 'formule1'
+    name: 'f1'
   }
 },
 {

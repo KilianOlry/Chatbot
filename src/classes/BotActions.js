@@ -40,11 +40,10 @@ const BotActions = class {
     }
   }
 
-  async formule1(driverName) {
-    const apiUrl = `http://ergast.com/api/f1/2010/drivers/${driverName}`;
+  async f1(driverName) {
+    const apiUrl = `http://ergast.com/api/f1/drivers/${driverName}`;
     try {
       const data = await axios.get(apiUrl);
-      console.log(data.data);
       return data.data;
     } catch {
       return false;
