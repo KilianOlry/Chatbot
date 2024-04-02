@@ -6,7 +6,7 @@
   .bot__list{
     @include flex(column, center, no-wrap);
     padding: 20px 10px;
-    gap: 16px;
+    gap: 20px;
     .galery{
       display: none;
     }
