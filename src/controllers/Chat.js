@@ -1,9 +1,9 @@
-import axios from 'axios';
+// import axios from 'axios';
 
 import viewNav from '../views/nav';
 import viewBots from '../views/chat-bot/bots';
 import viewInput from '../views/chat-bot/input';
-import viewMessage from '../views/chat-bot/message';
+import viewMessageBot from '../views/chat-bot/message';
 import botDatas from '../models/entite';
 import BotActions from '../classes/BotActions';
 
@@ -31,57 +31,73 @@ const Chat = class extends BotActions {
 
     const listMessage = document.querySelector('.textarea');
     elInputChat.addEventListener('keyup', async (e) => {
-      let data = '';
       const inputValue = elInputChat.value;
 
       if (e.keyCode === 13 && inputValue !== '') {
         const keyWord = inputValue.split(' ');
         if (keyWord.length >= 2) {
-          const action = keyWord[1];
-          data = await this.meteo(action);
-          const botResponse = data || 'Cette commande ne correspond à aucun bot';
-          listMessage.insertAdjacentHTML('beforeend', this.renderMessage(keyWord));
-          listMessage.insertAdjacentHTML('beforeend', viewMessage(botResponse));
+          const botName = keyWord[0];
+          const actions = keyWord[1];
+
+          if (typeof this[botName] === 'function') {
+            const botResponse = await this[botName](actions);
+            botDatas.forEach((element) => {
+              if (element.actions.name === botName) {
+                listMessage.insertAdjacentHTML('beforeend', this.renderMessageUser(keyWord));
+                listMessage.insertAdjacentHTML('beforeend', viewMessageBot(element.name, element.image, botResponse));
+              }
+            });
+          }
         } else {
-          const botResponse = data || 'Cette commande ne correspond à aucun bot';
-          listMessage.insertAdjacentHTML('beforeend', this.renderMessage(keyWord));
-          listMessage.insertAdjacentHTML('beforeend', viewMessage(botResponse));
+          const botError = botDatas.find((element) => element.name === 'Error');
+          const botResponse = 'Désolé cette commande ne correspond à aucun bot';
+          listMessage.insertAdjacentHTML('beforeend', this.renderMessageUser(keyWord));
+          listMessage.insertAdjacentHTML('beforeend', viewMessageBot(botError.name, botError.image, botResponse, this.isValidURL));
         }
+        listMessage.scrollTop = listMessage.scrollHeight;
         this.saveMessage(keyWord);
         elInputChat.value = '';
       }
     });
   }
 
-  onClickButton() {
+  onclick() {
     const elInputChat = document.querySelector('.form-control');
-    const elInputButton = document.querySelector('.btn-input');
+    const btn = document.querySelector('.btn');
     const listMessage = document.querySelector('.textarea');
 
-    elInputButton.addEventListener('click', async () => {
-      let data = '';
+    btn.addEventListener('click', async () => {
       const inputValue = elInputChat.value;
 
       if (inputValue !== '') {
         const keyWord = inputValue.split(' ');
         if (keyWord.length >= 2) {
-          const action = keyWord[1];
-          data = await this.meteo(action);
-          const botResponse = data || 'Cette commande ne correspond à aucun bot';
-          listMessage.insertAdjacentHTML('beforeend', this.renderMessage(keyWord));
-          listMessage.insertAdjacentHTML('beforeend', viewMessage(botResponse));
+          const botName = keyWord[0];
+          const actions = keyWord[1];
+
+          if (typeof this[botName] === 'function') {
+            const botResponse = await this[botName](actions);
+            botDatas.forEach((element) => {
+              if (element.actions.name === botName) {
+                listMessage.insertAdjacentHTML('beforeend', this.renderMessageUser(keyWord));
+                listMessage.insertAdjacentHTML('beforeend', viewMessageBot(element.name, element.image, botResponse));
+              }
+            });
+          }
         } else {
-          const botResponse = data || 'Cette commande ne correspond à aucun bot';
-          listMessage.insertAdjacentHTML('beforeend', this.renderMessage(keyWord));
-          listMessage.insertAdjacentHTML('beforeend', viewMessage(botResponse));
+          const botError = botDatas.find((element) => element.name === 'Error');
+          const botResponse = 'Désolé cette commande ne correspond à aucun bot';
+          listMessage.insertAdjacentHTML('beforeend', this.renderMessageUser(keyWord));
+          listMessage.insertAdjacentHTML('beforeend', viewMessageBot(botError.name, botError.image, botResponse, this.isValidURL));
         }
+        listMessage.scrollTop = listMessage.scrollHeight;
         this.saveMessage(keyWord);
         elInputChat.value = '';
       }
     });
   }
 
-  renderMessage(content) {
+  renderMessageUser(content) {
     return `
     <div class='user'>
       <div class='container__message__user'>
@@ -91,7 +107,7 @@ const Chat = class extends BotActions {
               <p class='user__message'>${content}</p>
               <p class='user__date'>${new Date().toLocaleDateString('fr')}</p>
           </div>
-            <img src="https://i.pinimg.com/564x/47/ba/71/47ba71f457434319819ac4a7cbd9988e.jpg" width='80' height='80' alt="">
+            <img class='user__image avatar' src="https://i.pinimg.com/564x/47/ba/71/47ba71f457434319819ac4a7cbd9988e.jpg" width='80' height='80' alt="">
         </div>
       </div>
     </div>
@@ -127,24 +143,25 @@ const Chat = class extends BotActions {
     });
   }
 
-  async connectBackEnd() {
-    const apiUrl = 'http://localhost/messages';
-    try {
-      const response = await axios.get(apiUrl);
-      const listMessage = document.querySelector('.textarea');
-      // eslint-disable-next-line prefer-destructuring
-      const data = response.data;
-      data.map((message) => (listMessage.insertAdjacentHTML('beforeend', viewMessage(message)))).join('');
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  // async connectBackEnd() {
+  //   const apiUrl = 'http://localhost/messages';
+  //   try {
+  //     const response = await axios.get(apiUrl);
+  //     const listMessage = document.querySelector('.textarea');
+  //     // eslint-disable-next-line prefer-destructuring
+  //     const data = response.data;
+  //     data.map((message) =>
+  // (listMessage.insertAdjacentHTML('beforeend', viewMessageBot(message)))).join('');
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
 
   run() {
     this.el.innerHTML = this.renderSkeleton();
     this.toggleBtn();
     this.onKeyPressed();
-    this.onClickButton();
+    this.onclick();
     this.connectBackEnd();
   }
 };
