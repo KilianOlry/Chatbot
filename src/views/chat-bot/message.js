@@ -12,10 +12,10 @@ export default (botName, botImage, botResponse) => (`
   <div class='container__message__bot'>
     <div class="message messageBot">
       <div>
-        <img src="${botImage || 'inconnu'}" class='avatar' width='80' height='80' alt="">
+        <img src="${botImage}" class='avatar' width='80' height='80' alt="">
       </div>
     <div class='content__message___bot'>
-      <p class='botName'>${botName || 'Thomas Shelby'}</p>
+      <p class='botName'>${botName}</p>
       ${isValidURL(botResponse) ? `<img src='${botResponse}' class ='img-voyage' alt='Image'>` : `<p class='botmessage'>${botResponse || ''}</p>`}
       <p class='botDate'>${new Date().toLocaleDateString('fr')}</p>
     </div>
