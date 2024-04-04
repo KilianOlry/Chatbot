@@ -1,5 +1,5 @@
 import viewNav from '../views/nav';
-// import botDatas from '../models/entite';
+import listBots from '../views/bots/list-bots';
 
 const Bots = class {
   constructor() {
@@ -12,8 +12,9 @@ const Bots = class {
   renderSkeleton() {
     return `
       ${viewNav()}
-      <main>
-        <h1>bonjour</h1>
+      <h1 class= 'title-bot-page'>Nos <span>Bots</span></h1>
+      <main class='main-listBots'>
+        ${listBots()}
       </main>
     `;
   }
