@@ -5,9 +5,10 @@ $text-color: #140F26;
 $text-color-2: #2E4043;
 $bg-message-user: #746373;
 $color-btn: #3ba58b;
+$blue-color: #0055f7;
 
 // FONT
-$fontfamily: "Roboto", sans-serif;
+$font-family: "Roboto", sans-serif;
 
 // MIXINS
 @mixin flex($direction: row, $justify: flex-start, $align: stretch, $wrap: nowrap) {
