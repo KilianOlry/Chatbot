@@ -1,10 +1,10 @@
-// import axios from 'axios';
+import axios from 'axios';
 
 import viewNav from '../views/nav';
 import viewBots from '../views/chat-bot/bots';
 import viewInput from '../views/chat-bot/input';
 import viewMessageBot from '../views/chat-bot/message';
-import botDatas from '../models/entite';
+import botDatass from '../models/entite';
 import BotActions from '../classes/BotActions';
 
 const Chat = class extends BotActions {
@@ -36,7 +36,7 @@ const Chat = class extends BotActions {
 
       if (typeof this[botName] === 'function') {
         const botResponse = await this[botName](actions);
-        botDatas.forEach((element) => {
+        botDatass.forEach((element) => {
           if (element.actions.name === botName) {
             listMessage.insertAdjacentHTML('beforeend', this.renderMessageUser(keyWord));
             listMessage.insertAdjacentHTML('beforeend', viewMessageBot(element.name, element.image, botResponse));
@@ -44,7 +44,7 @@ const Chat = class extends BotActions {
         });
       }
     } else {
-      const botError = botDatas.find((element) => element.name === 'Error');
+      const botError = botDatass.find((element) => element.name === 'Error');
       const botResponse = 'Désolé cette commande ne correspond à aucun bot';
       listMessage.insertAdjacentHTML('beforeend', this.renderMessageUser(keyWord));
       listMessage.insertAdjacentHTML('beforeend', viewMessageBot(botError.name, botError.image, botResponse, this.isValidURL));
@@ -93,12 +93,12 @@ const Chat = class extends BotActions {
     `;
   }
 
-  renderSkeleton() {
+  async renderSkeleton() {
     return `
       ${viewNav()}
       <main>
         <article class='container__bot'>
-          ${viewBots(botDatas)}
+          ${viewBots(await this.botsData())}
         </article>
 
         <div class='container__right'>
@@ -110,6 +110,7 @@ const Chat = class extends BotActions {
 
           </div>
         </div>
+
       </main>
     `;
   }
@@ -122,24 +123,19 @@ const Chat = class extends BotActions {
     });
   }
 
-  // async connectBackEnd() {
-  //   const apiUrl = 'http://localhost/messages';
-  //   try {
-  //     const response = await axios.get(apiUrl);
-  //     const listMessage = document.querySelector('.textarea');
-  //     // eslint-disable-next-line prefer-destructuring
-  //     const data = response.data;
-  //     data.map((message) =>
-  //       (listMessage.insertAdjacentHTML('beforeend', viewMessageBot(message)))).join('');
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
+  async botsData() {
+    const apiUrl = 'http://localhost/bots';
+    try {
+      const response = await axios.get(apiUrl);
+      return response.data;
+    } catch (error) {
+      return error;
+    }
+  }
 
-  run() {
-    this.el.innerHTML = this.renderSkeleton();
+  async run() {
+    this.el.innerHTML = await this.renderSkeleton();
     this.toggleBtn();
-    // this.connectBackEnd();
     this.sendMessage();
   }
 };
