@@ -13,14 +13,12 @@ const BotActions = class {
     try {
       const response = await axios.get(apiUrl);
       weatherData = response.data;
-      const botResponse = `Il fait ${weatherData.main.temp} degrés à ${city}`;
+      const botResponse = `Il fait ${weatherData.main.temp} degrés à ${city} <br> description: ${weatherData.weather[0].description}`;
       listMessage.insertAdjacentHTML('beforeend', viewMessageBot(botData.name, botData.image, botResponse));
-      listMessage.scrollTop = listMessage.scrollHeight;
       return undefined;
     } catch (error) {
       const botResponse = 'Erreur lors de la récupération des données météo.<br>Peut-être une erreur dans le nom de la ville.';
       listMessage.insertAdjacentHTML('beforeend', viewMessageBot(botData.name, botData.image, botResponse));
-      listMessage.scrollTop = listMessage.scrollHeight;
       return false;
     }
   }

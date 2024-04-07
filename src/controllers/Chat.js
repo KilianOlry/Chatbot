@@ -51,32 +51,8 @@ const Chat = class extends BotActions {
         console.log('reponse bot default');
         break;
     }
-
+    listMessage.scrollTop = listMessage.scrollHeight;
     elInput.value = '';
-
-    // const keyWord = messageUser.split(' ');
-    // if (keyWord.length >= 2) {
-    //   const botName = keyWord[0];
-    //   const actions = keyWord[1];
-
-    //   if (typeof this[botName] === 'function') {
-    //     const botResponse = await this[botName](actions);
-    //     botDatas.forEach((element) => {
-    //       if (element.actions.name === botName) {
-    //         listMessage.insertAdjacentHTML('beforeend', this.renderMessageUser(messageUser));
-    //         listMessage.insertAdjacentHTML('beforeend', viewMessageBot(element.name, element.image, botResponse));
-    //       }
-    //     });
-    //   }
-    // } else {
-    //   const botError = botDatas.find((element) => element.name === 'Error');
-    //   const botResponse = 'Désolé cette commande ne correspond à aucun bot';
-    //   listMessage.insertAdjacentHTML('beforeend', this.renderMessageUser(keyWord));
-    //   listMessage.insertAdjacentHTML('beforeend', viewMessageBot(botError.name, botError.image, botResponse, this.isValidURL));
-    // }
-    // listMessage.scrollTop = listMessage.scrollHeight;
-    // elInput.value = '';
-    // this.saveMessage(messageUser);
   }
 
   sendMessage() {
