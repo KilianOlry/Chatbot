@@ -9,7 +9,7 @@ const routes = [{
   controller: Chat
 },
 {
-  url: '/Bots',
+  url: '/bots',
   controller: Bots
 }];
 

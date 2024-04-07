@@ -9,7 +9,7 @@
     padding: 30px;
     height: 100%;
     border-radius: 10px;
-    background-color: $secondary-color;
+    background-color: $primary-color;
     .container__message__bot{
       max-width: 50%;
       .messageBot{
@@ -18,17 +18,17 @@
         gap: 10px;
         .content__message___bot{
           padding: 15px;
-          background-color: $primary-color;
+          background-color: $secondary-color;
           border-radius: 15px;
             .botName{
-              color: $text-color;
+              color: $text-primary;
               font-weight: 500;
             }
             #img-voyage{
               border-radius: none;
             }
             .botmessage{
-              columns: $text-color-2;
+              color: $text-secondary;
               font-weight: 300;
             }
             .botDate{
@@ -53,10 +53,10 @@
         gap: 10px;
         margin-block: 20px;
         .message__content{
-          background-color: $bg-message-user;
+          background-color: $blue-color;
           padding: 15px;
           border-radius: 15px;
-          color: $secondary-color;
+          color: $primary-color;
           .user__name{
             font-weight: 500;
           }

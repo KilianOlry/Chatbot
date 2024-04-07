@@ -6,7 +6,7 @@
       position: fixed;
       bottom: 34px;
       input{
-        width: 320px;
+        width: 520px;
         padding: 20px 20px;
         border-radius: 20px;
         border: none;
@@ -19,10 +19,11 @@
       button{
         outline: none;
         border: none;
+        margin-left: 1rem;
         padding: 10px;
         border-radius: 50%;
-        background-color: $color-btn;
-        color: $secondary-color;
+        background-color: $blue-color;
+        color: $primary-color;
         font-size: 20px;
       }
     }

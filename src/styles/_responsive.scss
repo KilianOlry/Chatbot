@@ -16,7 +16,7 @@
   }
   .icon-galery-bot{
     display: flex !important;
-    color: $text-color;
+    color: $text-primary;
     i{
       display: block !important;
     }
@@ -42,5 +42,5 @@
   right: 0;
   width: 300px;
   z-index: 100;
-  background-color: $bg-message-user;
+  background-color: $blue-color;
 }

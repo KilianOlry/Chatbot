@@ -6,7 +6,7 @@ export default () => (`
         ChatBot
       </a>
       <i class='ri-menu-3-line toggleBtn container__navbar__toggle' id='toggleBtn'></i>
-      <a href="" class='icon-galery'>
+      <a href="/bots" class='icon-galery'>
         <i class="ri-gallery-view-2"></i>
       </a>
     </div>

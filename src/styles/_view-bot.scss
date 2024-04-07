@@ -15,15 +15,19 @@
       align-items: center;
       gap: 15px;
       padding: 10px;
-      background-color: $secondary-color;
+      background-color: $primary-color;
       border-radius: 10px;
-      transition: .4s ease-in;
+      transition: .2s ease-in;
       &:hover{
-        background-color: $color-btn;
-        color: $secondary-color;
+        background-color: $blue-color;
+        color: $primary-color;
+        .__description__bot__name{
+          color: white;
       }
+    }
       img{
         border-radius: 50%;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
       }
       .__description {
         white-space: nowrap;
@@ -31,11 +35,12 @@
         overflow: hidden;
         text-overflow: ellipsis;
         &__bot__name{
-          color: $text-color;
+          color: $text-primary;
+          font-size: 16.5px;
           font-weight: 500;
+          margin-bottom: 5px;
         }
         &__bot__message{
-          columns: $text-color-2;
           font-weight: 300;
           font-style: italic;
         }
