@@ -1,9 +1,10 @@
-import axios from 'axios';
 import viewNav from '../views/nav';
 import listBots from '../views/bots/list-bots';
+import BotActions from '../classes/BotActions';
 
-const Bots = class {
+const Bots = class extends BotActions {
   constructor() {
+    super();
     this.el = document.getElementById('app');
     this.message = document.querySelector('.container__message__user');
 
@@ -26,16 +27,6 @@ const Bots = class {
     toggleBtn.addEventListener('click', () => {
       viewUser.classList.toggle('responsive');
     });
-  }
-
-  async botsData() {
-    const apiUrl = 'http://localhost/bots';
-    try {
-      const response = await axios.get(apiUrl);
-      return response.data;
-    } catch (error) {
-      return error;
-    }
   }
 
   async run() {

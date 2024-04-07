@@ -2,6 +2,16 @@ import axios from 'axios';
 import botDatas from '../models/entite';
 
 const BotActions = class {
+  async botsData() {
+    const apiUrl = 'http://localhost/bots';
+    try {
+      const response = await axios.get(apiUrl);
+      return response.data;
+    } catch (error) {
+      return error;
+    }
+  }
+
   async meteo(city) {
     let weatherData = '';
     const apiKey = '';

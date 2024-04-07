@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 import viewNav from '../views/nav';
 import viewBots from '../views/chat-bot/bots';
 import viewInput from '../views/chat-bot/input';
@@ -121,16 +119,6 @@ const Chat = class extends BotActions {
     toggleBtn.addEventListener('click', () => {
       viewUser.classList.toggle('responsive');
     });
-  }
-
-  async botsData() {
-    const apiUrl = 'http://localhost/bots';
-    try {
-      const response = await axios.get(apiUrl);
-      return response.data;
-    } catch (error) {
-      return error;
-    }
   }
 
   async run() {
