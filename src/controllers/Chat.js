@@ -3,7 +3,7 @@
 import viewNav from '../views/nav';
 import viewBots from '../views/chat-bot/bots';
 import viewInput from '../views/chat-bot/input';
-import viewMessageBot from '../views/chat-bot/message';
+// import viewMessageBot from '../views/chat-bot/message';
 import botDatas from '../models/entite';
 import BotActions from '../classes/BotActions';
 
@@ -29,29 +29,54 @@ const Chat = class extends BotActions {
     const listMessage = document.querySelector('.textarea');
     const elInput = document.querySelector('.form-control');
 
-    const keyWord = messageUser.split(' ');
-    if (keyWord.length >= 2) {
-      const botName = keyWord[0];
-      const actions = keyWord[1];
-
-      if (typeof this[botName] === 'function') {
-        const botResponse = await this[botName](actions);
-        botDatas.forEach((element) => {
-          if (element.actions.name === botName) {
-            listMessage.insertAdjacentHTML('beforeend', this.renderMessageUser(keyWord));
-            listMessage.insertAdjacentHTML('beforeend', viewMessageBot(element.name, element.image, botResponse));
-          }
-        });
-      }
-    } else {
-      const botError = botDatas.find((element) => element.name === 'Error');
-      const botResponse = 'Désolé cette commande ne correspond à aucun bot';
-      listMessage.insertAdjacentHTML('beforeend', this.renderMessageUser(keyWord));
-      listMessage.insertAdjacentHTML('beforeend', viewMessageBot(botError.name, botError.image, botResponse, this.isValidURL));
-    }
-    listMessage.scrollTop = listMessage.scrollHeight;
+    listMessage.insertAdjacentHTML('beforeend', this.renderMessageUser(messageUser));
     elInput.value = '';
-    this.saveMessage(keyWord);
+
+    const firstWord = messageUser.split(' ')[0].toLowerCase();
+
+    switch (firstWord) {
+      case 'f1':
+        console.log(firstWord);
+        break;
+      case 'meteo':
+        await this.meteo(messageUser);
+        break;
+      case 'pokemon':
+        console.log(firstWord);
+        break;
+      case 'voyage':
+        console.log(firstWord);
+        break;
+      default:
+        console.log('reponse bot default');
+        break;
+    }
+
+    elInput.value = '';
+
+    // const keyWord = messageUser.split(' ');
+    // if (keyWord.length >= 2) {
+    //   const botName = keyWord[0];
+    //   const actions = keyWord[1];
+
+    //   if (typeof this[botName] === 'function') {
+    //     const botResponse = await this[botName](actions);
+    //     botDatas.forEach((element) => {
+    //       if (element.actions.name === botName) {
+    //         listMessage.insertAdjacentHTML('beforeend', this.renderMessageUser(messageUser));
+    //         listMessage.insertAdjacentHTML('beforeend', viewMessageBot(element.name, element.image, botResponse));
+    //       }
+    //     });
+    //   }
+    // } else {
+    //   const botError = botDatas.find((element) => element.name === 'Error');
+    //   const botResponse = 'Désolé cette commande ne correspond à aucun bot';
+    //   listMessage.insertAdjacentHTML('beforeend', this.renderMessageUser(keyWord));
+    //   listMessage.insertAdjacentHTML('beforeend', viewMessageBot(botError.name, botError.image, botResponse, this.isValidURL));
+    // }
+    // listMessage.scrollTop = listMessage.scrollHeight;
+    // elInput.value = '';
+    // this.saveMessage(messageUser);
   }
 
   sendMessage() {
