@@ -34,23 +34,12 @@ const Chat = class extends BotActions {
 
     const firstWord = messageUser.split(' ')[0].toLowerCase();
 
-    switch (firstWord) {
-      case 'f1':
-        console.log(firstWord);
-        break;
-      case 'meteo':
-        await this.meteo(messageUser);
-        break;
-      case 'pokemon':
-        console.log(firstWord);
-        break;
-      case 'voyage':
-        console.log(firstWord);
-        break;
-      default:
-        console.log('reponse bot default');
-        break;
+    if (typeof this[firstWord] === 'function') {
+      await this[firstWord](messageUser);
+    } else {
+      console.log('erreur message');
     }
+
     listMessage.scrollTop = listMessage.scrollHeight;
     elInput.value = '';
   }
