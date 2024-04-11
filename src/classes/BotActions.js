@@ -4,15 +4,19 @@ import viewMessageBot from '../views/chat-bot/message';
 
 const BotActions = class {
   async meteo(messageUser) {
-    const city = messageUser.split(' ').slice(1).join(' ');
+    const city = messageUser.split(' ').slice(2).join(' ');
+    const arg = messageUser.split(' ').slice(1).join(' ');
     let weatherData = '';
-    const apiKey = 'c7365fd73239e3d99f59be15769e042e';
+    const apiKey = process.env.WEATHER_KEY;
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=fr&appid=${apiKey}`;
     const botData = botDatas.find((element) => element.actions.name === 'meteo');
     const listMessage = document.querySelector('.textarea');
+    console.log(arg);
+    console.log(city);
     try {
       const response = await axios.get(apiUrl);
       weatherData = response.data;
+
       const botResponse = `Il fait ${weatherData.main.temp} degrés à ${city} <br> description: ${weatherData.weather[0].description}`;
       listMessage.insertAdjacentHTML('beforeend', viewMessageBot(botData.name, botData.image, botResponse));
       return undefined;

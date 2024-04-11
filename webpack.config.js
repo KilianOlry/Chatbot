@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: './src/index.js', //if you unuse typescript entry
@@ -68,6 +69,9 @@ module.exports = {
       extensions: ['js', 'ts'],
       exclude: 'node_modules',
       files: './src/'
+    }),
+    new Dotenv ({
+      path: './.env'
     })
   ]
 };
