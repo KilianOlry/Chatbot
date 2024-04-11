@@ -37,7 +37,7 @@ const Chat = class extends BotActions {
         const botResponse = await this[botName](actions);
         botsData.forEach((element) => {
           if (element.actions.name === botName) {
-            listMessage.insertAdjacentHTML('beforeend', this.renderMessageUser(messageUser));
+            listMessage.insertAdjacentHTML('beforeend', this.renderMessage(messageUser));
             listMessage.insertAdjacentHTML('beforeend', viewMessageBot(element.name, element.image, botResponse));
           }
         });
@@ -45,7 +45,7 @@ const Chat = class extends BotActions {
     } else {
       const botError = botsData.find((element) => element.name === 'Error');
       const botResponse = 'Désolé cette commande ne correspond à aucun bot';
-      listMessage.insertAdjacentHTML('beforeend', this.renderMessageUser(messageUser));
+      listMessage.insertAdjacentHTML('beforeend', this.renderMessage(messageUser));
       listMessage.insertAdjacentHTML('beforeend', viewMessageBot(botError.name, botError.image, botResponse, this.isValidURL));
     }
     listMessage.scrollTop = listMessage.scrollHeight;
@@ -86,10 +86,10 @@ const Chat = class extends BotActions {
     });
   }
 
-  renderMessageUser(content) {
+  renderMessage(content) {
     return `
     <div class='user'>
-      <div class='container__message__user'>
+      <div class='container__message container__message__user'>
         <div class="message__user messageBot">
           <div class='message__content'>
               <p class='user__name'>Matéo Grange</p>

@@ -10,8 +10,10 @@
     height: 100%;
     border-radius: 10px;
     background-color: $primary-color;
-    .container__message__bot{
+    .container__message{
       max-width: 50%;
+    }
+    .container__message__bot{
       .messageBot{
         display: flex;
         margin-block: 20px;
@@ -44,32 +46,31 @@
     .user{
       display: flex;
       justify-content: end;
+      .container__message__user{
+        .message__user{
+          display: flex;
+          justify-content: end;
+          gap: 10px;
+          margin-block: 20px;
+          .message__content{
+            background-color: $blue-color;
+            padding: 15px;
+            border-radius: 15px;
+            color: $primary-color;
+            .user__name{
+              font-weight: 500;
+            }
+            .user__message{
+              font-weight: 300;
+            }
+            .user__date{
+              text-align: end;
+              margin-top: 10px;
+            }
+          }
+          }
+        }
     }
-    .container__message__user{
-      max-width: 50%;
-      .message__user{
-        display: flex;
-        justify-content: end;
-        gap: 10px;
-        margin-block: 20px;
-        .message__content{
-          background-color: $blue-color;
-          padding: 15px;
-          border-radius: 15px;
-          color: $primary-color;
-          .user__name{
-            font-weight: 500;
-          }
-          .user__message{
-            font-weight: 300;
-          }
-          .user__date{
-            text-align: end;
-            margin-top: 10px;
-          }
-        }
-        }
-      }
     }
   }
   .avatar{
