@@ -1,8 +1,9 @@
+import axios from 'axios';
 import viewNav from '../views/nav';
 import viewBots from '../views/chat-bot/bots';
 import viewInput from '../views/chat-bot/input';
 import viewMessageBot from '../views/chat-bot/message';
-import botDatass from '../models/entite';
+import botsData from '../models/entite';
 import BotActions from '../classes/BotActions';
 
 const Chat = class extends BotActions {
@@ -34,22 +35,33 @@ const Chat = class extends BotActions {
 
       if (typeof this[botName] === 'function') {
         const botResponse = await this[botName](actions);
-        botDatass.forEach((element) => {
+        botsData.forEach((element) => {
           if (element.actions.name === botName) {
-            listMessage.insertAdjacentHTML('beforeend', this.renderMessageUser(keyWord));
+            listMessage.insertAdjacentHTML('beforeend', this.renderMessageUser(messageUser));
             listMessage.insertAdjacentHTML('beforeend', viewMessageBot(element.name, element.image, botResponse));
           }
         });
       }
     } else {
-      const botError = botDatass.find((element) => element.name === 'Error');
+      const botError = botsData.find((element) => element.name === 'Error');
       const botResponse = 'Désolé cette commande ne correspond à aucun bot';
-      listMessage.insertAdjacentHTML('beforeend', this.renderMessageUser(keyWord));
+      listMessage.insertAdjacentHTML('beforeend', this.renderMessageUser(messageUser));
       listMessage.insertAdjacentHTML('beforeend', viewMessageBot(botError.name, botError.image, botResponse, this.isValidURL));
     }
     listMessage.scrollTop = listMessage.scrollHeight;
     elInput.value = '';
     this.saveMessage(keyWord);
+  }
+
+  async getMessages() {
+    const apiUrl = 'http://localhost/messages';
+    try {
+      const response = await axios.get(apiUrl);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      return error;
+    }
   }
 
   sendMessage() {
@@ -102,7 +114,7 @@ const Chat = class extends BotActions {
         <div class='container__right'>
           <div class='textarea'>
 
-            <div class='container__input'>
+          <div class='container__input'>
               ${viewInput()}
             </div>
 
@@ -125,6 +137,7 @@ const Chat = class extends BotActions {
     this.el.innerHTML = await this.renderSkeleton();
     this.toggleBtn();
     this.sendMessage();
+    viewMessageBot(this.getMessages());
   }
 };
 

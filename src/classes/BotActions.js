@@ -14,7 +14,7 @@ const BotActions = class {
 
   async meteo(city) {
     let weatherData = '';
-    const apiKey = '';
+    const apiKey = process.env.WEATHER_API_KEY;
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=fr&appid=${apiKey}`;
     try {
       const response = await axios.get(apiUrl);
@@ -30,7 +30,7 @@ const BotActions = class {
   }
 
   async voyage(cityName) {
-    const apiKey = '';
+    const apiKey = process.env.UNSPLASH_API_KEY;
     const apiUrl = `https://api.unsplash.com/search/photos?count=1&query=${cityName}&client_id=${apiKey}`;
     try {
       const data = await axios.get(apiUrl);
@@ -58,10 +58,6 @@ const BotActions = class {
     } catch {
       return false;
     }
-  }
-
-  run() {
-
   }
 };
 
