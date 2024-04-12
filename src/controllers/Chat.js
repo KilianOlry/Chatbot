@@ -4,7 +4,6 @@ import viewNav from '../views/nav';
 import viewBots from '../views/chat-bot/bots';
 import viewInput from '../views/chat-bot/input';
 // import viewMessageBot from '../views/chat-bot/message';
-import botDatas from '../models/entite';
 import BotActions from '../classes/BotActions';
 
 const Chat = class extends BotActions {
