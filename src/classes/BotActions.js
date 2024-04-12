@@ -1,5 +1,6 @@
 import axios from 'axios';
 import botDatas from '../models/entite';
+import viewMessageBot from '../views/chat-bot/message';
 
 const BotActions = class {
   async botsData() {
@@ -12,15 +13,33 @@ const BotActions = class {
     }
   }
 
-  async meteo(city) {
+  async meteo(messageUser) {
+    const words = messageUser.split(' ');
+    const arg = words[1];
+    const city = words[2];
     let weatherData = '';
     const apiKey = process.env.WEATHER_API_KEY;
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=fr&appid=${apiKey}`;
+    const botData = botDatas.find((element) => element.actions.name === 'meteo');
+    const listMessage = document.querySelector('.textarea');
     try {
       const response = await axios.get(apiUrl);
       weatherData = response.data;
-      return weatherData.main.temp;
+      let botResponse = ' ';
+      if (arg === 'info') {
+        botResponse = `Il fait ${weatherData.main.temp} degrés à ${city} <br> description: ${weatherData.weather[0].description}`;
+      } else if (arg === 'temperature') {
+        botResponse = `Il fait ${weatherData.main.temp} degrés à ${city}`;
+      } else if (arg === 'vent') {
+        botResponse = `La vitesse du vent à ${city} et de ${weatherData.wind.speed}km/h`;
+      } else {
+        botResponse = 'Comment utiliser le bot météo:<br>   -meteo [info] [ville]<br>   -meteo [temperature] [ville]<br>   -meteo [vent] [ville]';
+      }
+      listMessage.insertAdjacentHTML('beforeend', viewMessageBot(botData.name, botData.image, botResponse));
+      return undefined;
     } catch (error) {
+      const botResponse = 'Erreur lors de la récupération des données météo.<br>Peut-être une erreur dans le nom de la ville.';
+      listMessage.insertAdjacentHTML('beforeend', viewMessageBot(botData.name, botData.image, botResponse));
       return false;
     }
   }

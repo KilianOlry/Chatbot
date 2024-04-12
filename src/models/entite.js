@@ -7,7 +7,7 @@ const entitie = [{
 },
 {
   name: 'Louis Bodin',
-  image: 'https://voi.img.pmdstatic.net/fit/http.3A.2F.2Fprd2-bone-image.2Es3-website-eu-west-1.2Eamazonaws.2Ecom.2Fvoi.2Fvar.2Fvoi.2Fstorage.2Fimages.2Fmedia.2Fmultimedia.2Flouis-bodin-revient-sur-le-sketch-des-guignols-suite-au-drame-de-dropped.2F9538354-1-fre-FR.2Flouis-bodin-revient-sur-le-sketch-des-guignols-suite-au-drame-de-dropped.2Ejpg/170x170/quality/80/video-louis-bodin-revient-sur-le-sketch-des-guignols-suite-au-drame-de-dropped.jpg',
+  image: 'https://static1.ozap.com/articles/4/33/26/34/@/2888026-louis-bodin-opengraph_1200-1.jpg',
   actions: {
     name: 'meteo'
   }
