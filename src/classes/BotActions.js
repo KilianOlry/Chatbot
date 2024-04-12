@@ -1,9 +1,7 @@
 import axios from 'axios';
 import botDatas from '../models/entite';
-import viewMessageBot from '../views/chat-bot/message';
 
 const BotActions = class {
-
   async botsData() {
     const apiUrl = 'http://localhost/bots';
     try {
@@ -21,7 +19,7 @@ const BotActions = class {
     let weatherData = '';
     const apiKey = process.env.WEATHER_API_KEY;
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=fr&appid=${apiKey}`;
-    const botData = botDatas.find((element) => element.actions.name === 'meteo');<<<<<<< back-2.0
+    const botData = botDatas.find((element) => element.actions.name === 'meteo');
     try {
       const response = await axios.get(apiUrl);
       weatherData = response.data;
@@ -35,7 +33,6 @@ const BotActions = class {
       } else {
         botResponse = 'Comment utiliser le bot météo:<br>   -meteo [info] [ville]<br>   -meteo [temperature] [ville]<br>   -meteo [vent] [ville]';
       }
-
       return [botResponse, botData.name, botData.image];
     } catch (error) {
       const botResponse = 'Erreur lors de la récupération des données météo.<br>Peut-être une erreur dans le nom de la ville.';
