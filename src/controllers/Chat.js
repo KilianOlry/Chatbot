@@ -3,7 +3,7 @@ import axios from 'axios';
 import viewNav from '../views/nav';
 import viewBots from '../views/chat-bot/bots';
 import viewInput from '../views/chat-bot/input';
-// import viewMessageBot from '../views/chat-bot/message';
+import viewMessageBot from '../views/chat-bot/message';
 import BotActions from '../classes/BotActions';
 
 const Chat = class extends BotActions {
@@ -28,13 +28,12 @@ const Chat = class extends BotActions {
     const listMessage = document.querySelector('.textarea');
     const elInput = document.querySelector('.form-control');
 
-    listMessage.insertAdjacentHTML('beforeend', this.renderMessageUser(messageUser));
-    elInput.value = '';
-
     const firstWord = messageUser.split(' ')[0].toLowerCase();
 
     if (typeof this[firstWord] === 'function') {
-      await this[firstWord](messageUser);
+      const botResponse = await this[firstWord](messageUser);
+      listMessage.insertAdjacentHTML('beforeend', this.renderMessage(messageUser));
+      listMessage.insertAdjacentHTML('beforeend', viewMessageBot(botResponse[1], botResponse[2], botResponse[0]));
     } else {
       console.log('erreur message');
     }
@@ -65,7 +64,7 @@ const Chat = class extends BotActions {
     });
   }
 
-  renderMessageUser(content) {
+  renderMessage(content) {
     return `
     <div class='user'>
       <div class='container__message__user'>
@@ -122,10 +121,22 @@ const Chat = class extends BotActions {
     }
   }
 
+  async getMessages() {
+    const apiUrl = 'http://localhost/messages';
+    try {
+      const response = await axios.get(apiUrl);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      return error;
+    }
+  }
+
   async run() {
     this.el.innerHTML = await this.renderSkeleton();
     this.toggleBtn();
     this.sendMessage();
+    this.getMessages();
   }
 };
 
