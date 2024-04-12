@@ -1,4 +1,4 @@
-// import axios from 'axios';
+import axios from 'axios';
 
 import viewNav from '../views/nav';
 import viewBots from '../views/chat-bot/bots';
@@ -83,12 +83,12 @@ const Chat = class extends BotActions {
     `;
   }
 
-  renderSkeleton() {
+  async renderSkeleton() {
     return `
       ${viewNav()}
       <main>
         <article class='container__bot'>
-          ${viewBots(botDatas)}
+          ${viewBots(await this.botsData())}
         </article>
 
         <div class='container__right'>
@@ -100,6 +100,7 @@ const Chat = class extends BotActions {
 
           </div>
         </div>
+
       </main>
     `;
   }
@@ -112,24 +113,19 @@ const Chat = class extends BotActions {
     });
   }
 
-  // async connectBackEnd() {
-  //   const apiUrl = 'http://localhost/messages';
-  //   try {
-  //     const response = await axios.get(apiUrl);
-  //     const listMessage = document.querySelector('.textarea');
-  //     // eslint-disable-next-line prefer-destructuring
-  //     const data = response.data;
-  //     data.map((message) =>
-  //       (listMessage.insertAdjacentHTML('beforeend', viewMessageBot(message)))).join('');
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
+  async botsData() {
+    const apiUrl = 'http://localhost/bots';
+    try {
+      const response = await axios.get(apiUrl);
+      return response.data;
+    } catch (error) {
+      return error;
+    }
+  }
 
-  run() {
-    this.el.innerHTML = this.renderSkeleton();
+  async run() {
+    this.el.innerHTML = await this.renderSkeleton();
     this.toggleBtn();
-    // this.connectBackEnd();
     this.sendMessage();
   }
 };

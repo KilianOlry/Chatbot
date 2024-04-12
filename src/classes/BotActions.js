@@ -39,7 +39,7 @@ const BotActions = class {
   }
 
   async voyage(cityName) {
-    const apiKey = 'Q8Qt37OkjEijpt7V7IVlnwda7mWRntYO2mcRmAMQ_YI';
+    const apiKey = '';
     const apiUrl = `https://api.unsplash.com/search/photos?count=1&query=${cityName}&client_id=${apiKey}`;
     try {
       const data = await axios.get(apiUrl);
