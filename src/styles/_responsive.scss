@@ -44,3 +44,46 @@
   z-index: 100;
   background-color: $blue-color;
 }
+
+
+@mixin small-smartphone {
+  @media (max-width: 320px) {
+      @content;
+  }
+}
+
+@mixin smartphone {
+  @media (max-width: 400px) {
+      @content;
+  }
+}
+
+
+@mixin small-tablette {
+  @media (max-width: 600px) {
+      @content;
+  }
+}
+
+@mixin medium-tablette {
+  @media (max-width: 768px) {
+      @content;
+  }
+}
+
+@mixin tablette {
+  @media (max-width: 1024px) {
+      @content;
+  }
+}
+
+@mixin desktop {
+  @media (max-width: 1600px) {}
+}
+
+@mixin large-tablette {
+  @media (max-width: 1440px) {
+
+      @content;
+  }
+}

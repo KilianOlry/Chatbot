@@ -1,10 +1,8 @@
 import viewNav from '../views/nav';
 import listBots from '../views/bots/list-bots';
-import BotActions from '../classes/BotActions';
 
-const Bots = class extends BotActions {
+const Bots = class {
   constructor() {
-    super();
     this.el = document.getElementById('app');
     this.message = document.querySelector('.container__message__user');
 

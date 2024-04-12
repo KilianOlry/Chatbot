@@ -4,11 +4,10 @@ import viewNav from '../views/nav';
 import viewBots from '../views/chat-bot/bots';
 import viewInput from '../views/chat-bot/input';
 import viewMessageBot from '../views/chat-bot/message';
-import BotActions from '../classes/BotActions';
+import * as bots from '../bots/bots';
 
-const Chat = class extends BotActions {
+const Chat = class {
   constructor() {
-    super();
     this.el = document.getElementById('app');
     this.message = document.querySelector('.container__message__user');
 
@@ -24,18 +23,22 @@ const Chat = class extends BotActions {
     localStorage.setItem('messages', JSON.stringify(messages));
   }
 
+  checkBotExist(firstWord) {
+    return Object.keys(bots).includes(firstWord);
+  }
+
   async callBot(messageUser) {
     const listMessage = document.querySelector('.textarea');
     const elInput = document.querySelector('.form-control');
 
     const firstWord = messageUser.split(' ')[0].toLowerCase();
 
-    if (typeof this[firstWord] === 'function') {
-      const botResponse = await this[firstWord](messageUser);
+    this.checkBotExist(firstWord);
+
+    if (this.checkBotExist(firstWord)) {
+      const botResponse = await bots[firstWord](messageUser);
       listMessage.insertAdjacentHTML('beforeend', this.renderMessage(messageUser));
       listMessage.insertAdjacentHTML('beforeend', viewMessageBot(botResponse[1], botResponse[2], botResponse[0]));
-    } else {
-      console.log('erreur message');
     }
 
     listMessage.scrollTop = listMessage.scrollHeight;
@@ -86,7 +89,7 @@ const Chat = class extends BotActions {
       ${viewNav()}
       <main>
         <article class='container__bot'>
-          ${viewBots(await this.botsData())}
+          ${viewBots(await bots.botApi())}
         </article>
 
         <div class='container__right'>
@@ -109,16 +112,6 @@ const Chat = class extends BotActions {
     toggleBtn.addEventListener('click', () => {
       viewUser.classList.toggle('responsive');
     });
-  }
-
-  async botsData() {
-    const apiUrl = 'http://localhost/bots';
-    try {
-      const response = await axios.get(apiUrl);
-      return response.data;
-    } catch (error) {
-      return error;
-    }
   }
 
   async getMessages() {
