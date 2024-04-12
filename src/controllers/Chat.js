@@ -3,8 +3,8 @@ import axios from 'axios';
 import viewNav from '../views/nav';
 import viewBots from '../views/chat-bot/bots';
 import viewInput from '../views/chat-bot/input';
-import viewMessageBot from '../views/chat-bot/message';
-import botDatass from '../models/entite';
+// import viewMessageBot from '../views/chat-bot/message';
+import botDatas from '../models/entite';
 import BotActions from '../classes/BotActions';
 
 const Chat = class extends BotActions {
@@ -29,29 +29,19 @@ const Chat = class extends BotActions {
     const listMessage = document.querySelector('.textarea');
     const elInput = document.querySelector('.form-control');
 
-    const keyWord = messageUser.split(' ');
-    if (keyWord.length >= 2) {
-      const botName = keyWord[0];
-      const actions = keyWord[1];
+    listMessage.insertAdjacentHTML('beforeend', this.renderMessageUser(messageUser));
+    elInput.value = '';
 
-      if (typeof this[botName] === 'function') {
-        const botResponse = await this[botName](actions);
-        botDatass.forEach((element) => {
-          if (element.actions.name === botName) {
-            listMessage.insertAdjacentHTML('beforeend', this.renderMessageUser(keyWord));
-            listMessage.insertAdjacentHTML('beforeend', viewMessageBot(element.name, element.image, botResponse));
-          }
-        });
-      }
+    const firstWord = messageUser.split(' ')[0].toLowerCase();
+
+    if (typeof this[firstWord] === 'function') {
+      await this[firstWord](messageUser);
     } else {
-      const botError = botDatass.find((element) => element.name === 'Error');
-      const botResponse = 'Désolé cette commande ne correspond à aucun bot';
-      listMessage.insertAdjacentHTML('beforeend', this.renderMessageUser(keyWord));
-      listMessage.insertAdjacentHTML('beforeend', viewMessageBot(botError.name, botError.image, botResponse, this.isValidURL));
+      console.log('erreur message');
     }
+
     listMessage.scrollTop = listMessage.scrollHeight;
     elInput.value = '';
-    this.saveMessage(keyWord);
   }
 
   sendMessage() {
