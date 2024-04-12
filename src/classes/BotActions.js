@@ -3,6 +3,17 @@ import botDatas from '../models/entite';
 import viewMessageBot from '../views/chat-bot/message';
 
 const BotActions = class {
+
+  async botsData() {
+    const apiUrl = 'http://localhost/bots';
+    try {
+      const response = await axios.get(apiUrl);
+      return response.data;
+    } catch (error) {
+      return error;
+    }
+  }
+
   async meteo(messageUser) {
     const words = messageUser.split(' ');
     const arg = words[1];
@@ -10,27 +21,25 @@ const BotActions = class {
     let weatherData = '';
     const apiKey = process.env.WEATHER_API_KEY;
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=fr&appid=${apiKey}`;
-    const botData = botDatas.find((element) => element.actions.name === 'meteo');
-    const listMessage = document.querySelector('.textarea');
+    const botData = botDatas.find((element) => element.actions.name === 'meteo');<<<<<<< back-2.0
     try {
       const response = await axios.get(apiUrl);
       weatherData = response.data;
-      let botResponse = ' ';
+      let botResponse = '';
       if (arg === 'info') {
-        botResponse = `Il fait ${weatherData.main.temp} degrés à ${city} <br> description: ${weatherData.weather[0].description}`;
+        botResponse = `Il fait ${weatherData.main.temp} °C à ${city} <br> description: ${weatherData.weather[0].description}`;
       } else if (arg === 'temperature') {
-        botResponse = `Il fait ${weatherData.main.temp} degrés à ${city}`;
+        botResponse = `Il fait ${weatherData.main.temp} °C à ${city}`;
       } else if (arg === 'vent') {
         botResponse = `La vitesse du vent à ${city} et de ${weatherData.wind.speed}km/h`;
       } else {
         botResponse = 'Comment utiliser le bot météo:<br>   -meteo [info] [ville]<br>   -meteo [temperature] [ville]<br>   -meteo [vent] [ville]';
       }
-      listMessage.insertAdjacentHTML('beforeend', viewMessageBot(botData.name, botData.image, botResponse));
-      return undefined;
+
+      return [botResponse, botData.name, botData.image];
     } catch (error) {
       const botResponse = 'Erreur lors de la récupération des données météo.<br>Peut-être une erreur dans le nom de la ville.';
-      listMessage.insertAdjacentHTML('beforeend', viewMessageBot(botData.name, botData.image, botResponse));
-      return false;
+      return [botResponse, botData.name, botData.image];
     }
   }
 
@@ -49,13 +58,65 @@ const BotActions = class {
     }
   }
 
-  async pokemon(pokemonName) {
-    const apiUrl = `https://tyradex.tech/api/v1/pokemon/${pokemonName}`;
+  async pokemon(messageUser) {
+    const words = messageUser.split(' ');
+    const arg = words[1];
+    const pokemon = words[2];
+    let pokemonData = '';
+    let pokemonDataEvo = '';
+    let imageEvo = '';
+    const apiUrl = `https://tyradex.tech/api/v1/pokemon/${pokemon}`;
+    const botData = botDatas.find((element) => element.actions.name === 'pokemon');
+
     try {
-      const data = await axios.get(apiUrl);
-      return data.data.sprites.regular;
-    } catch {
-      return false;
+      const response = await axios.get(apiUrl);
+      pokemonData = response.data;
+      let botResponse = ' ';
+      if (arg === 'info') {
+        botResponse = `
+        <div class='container__pokemon'>
+          <div class='container__pokemon__left'>
+            <p class='title'>${pokemonData.name.fr}</p>
+            <img src="${pokemonData.sprites.regular}" class='pokemon__img'>
+          </div>
+            <ul>
+              <li class='item__stats types'>Types : ${pokemonData.types.map((type) => `<img class='pokemon__type__img' src="${type.image}">`).join(' ')}</li>
+              <li class='item__stats'>Hp : ${pokemonData.stats.hp}</li>
+              <li class='item__stats'>Attaque : ${pokemonData.stats.atk}</li>
+              <li class='item__stats'>Défense : ${pokemonData.stats.def}</li>
+              <li class='item__stats'>Vitesse : ${pokemonData.stats.vit}</li>
+            </ul>
+          </div>
+        `;
+      } else if (arg === 'evolution') {
+        const evoUrl = `https://tyradex.tech/api/v1/pokemon/${pokemonData.evolution.next[0].name}`;
+        try {
+          const responseEvo = await axios.get(evoUrl);
+          pokemonDataEvo = responseEvo.data;
+          imageEvo = pokemonDataEvo.sprites.regular;
+        } catch {
+          return false;
+        }
+        botResponse = `
+        <div class='container__pokemon'>
+          <div>
+            <p class='title'>${pokemonData.name.fr}</p>
+            <img src="${pokemonData.sprites.regular}" class='pokemon__img'>
+          </div>
+          <div>
+            ${pokemonData.evolution.next.map((evolution) => `${evolution.name}`).join('')}
+            <img src="${imageEvo}" class='pokemon__img'>
+          </div>
+        </div>`;
+      } else if (arg === 'random') {
+        botResponse = 'random';
+      } else {
+        botResponse = 'Comment utiliser le bot météo:<br>-meteo [info] [ville]<br>-meteo [temperature] [ville]<br>-meteo [vent] [ville]';
+      }
+      return [botResponse, botData.name, botData.image];
+    } catch (error) {
+      const botResponse = 'Erreur lors de la récupération des données météo.<br>Peut-être une erreur dans le nom de la ville.';
+      return [botResponse, botData.name, botData.image];
     }
   }
 
@@ -67,10 +128,6 @@ const BotActions = class {
     } catch {
       return false;
     }
-  }
-
-  run() {
-
   }
 };
 

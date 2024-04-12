@@ -1,8 +1,7 @@
 import itemBot from './bot';
-import entite from '../../models/entite';
 
-export default () => (`
-<div class="bot-container container">
-${entite.map((bot) => itemBot(bot)).join('')}
-</div>
-`);
+export default (dataBots) => `
+  <div class="bot-container container">
+    ${dataBots.map((bot) => itemBot(bot)).join('')}
+  </div>
+`;

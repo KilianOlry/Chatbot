@@ -1,0 +1,27 @@
+// HEADER
+.container__navbar{
+  background-color: $primary-color;
+  &__navbar{
+    @include flex(row, space-between, center, no-wrap);
+    padding: 10px;
+    font-size: 2rem;
+    &__logo{
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      font-size: 1.9rem;
+      color: $text-secondary;
+      font-weight: bolder;
+      text-transform: uppercase;
+      letter-spacing: .05rem;
+      }
+      .icon-galery{
+        margin-right: 1rem;
+        font-size: 2rem;
+        color: $text-secondary;
+      }
+    .toggleBtn{
+      display: none;
+    }
+  }
+}

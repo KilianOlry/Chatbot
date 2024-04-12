@@ -5,7 +5,7 @@
 }
 body{
   font-family: $font-family;
-  background-color: $primary-color;
+  background-color: $secondary-color;
   height: 100vh;
 }
 ul{
@@ -29,10 +29,10 @@ main{
 ::-webkit-scrollbar {
   width: 5px;
   &-track{
-    background: $primary-color;
+    background: $secondary-color;
   }
   &-thumb{
-    background: $bg-message-user;
+    background: $text-secondary;
     border-radius: 1rem;
   }
 }

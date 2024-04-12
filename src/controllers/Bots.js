@@ -1,20 +1,22 @@
 import viewNav from '../views/nav';
 import listBots from '../views/bots/list-bots';
+import BotActions from '../classes/BotActions';
 
-const Bots = class {
+const Bots = class extends BotActions {
   constructor() {
+    super();
     this.el = document.getElementById('app');
     this.message = document.querySelector('.container__message__user');
 
     this.run();
   }
 
-  renderSkeleton() {
+  async renderSkeleton() {
     return `
       ${viewNav()}
       <h1 class= 'title-bot-page'>Nos <span>Bots</span></h1>
       <main class='main-listBots'>
-        ${listBots()}
+        ${listBots(await this.botsData())}
       </main>
     `;
   }
@@ -27,8 +29,8 @@ const Bots = class {
     });
   }
 
-  run() {
-    this.el.innerHTML = this.renderSkeleton();
+  async run() {
+    this.el.innerHTML = await this.renderSkeleton();
     this.toggleBtn();
   }
 };
