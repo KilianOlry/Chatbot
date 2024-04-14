@@ -28,12 +28,9 @@ const Chat = class {
   }
 
   async callBot(messageUser) {
+    const firstWord = messageUser.split(' ')[0].toLowerCase();
     const listMessage = document.querySelector('.textarea');
     const elInput = document.querySelector('.form-control');
-
-    const firstWord = messageUser.split(' ')[0].toLowerCase();
-
-    this.checkBotExist(firstWord);
 
     if (this.checkBotExist(firstWord)) {
       const botResponse = await bots[firstWord](messageUser);
