@@ -23,9 +23,10 @@ const entitie = [{
 },
 {
   name: 'Stéphane Bern',
-  image: 'https://www.gala.fr/imgre/fit/~1~gal~2023~06~30~1730db8f-85d9-4b7f-96de-df5a48813f07.png/150x150/quality/80/stephane-bern-son-havre-de-paix-loin-de-paris.jpg',
+  image: 'https://cdn-s-www.republicain-lorrain.fr/images/5D115D65-E32F-4DD0-AB85-F5A2DEE9AD5F/NW_raw/stephane-bern-sera-sur-la-scene-de-la-passerelle-a-florange-ce-vendredi-soir-une-exclusivite-en-province-photo-est-republicain-1573139637.jpg',
   actions: {
-    keyword: ['voyage']
+    keyword: 'voyage',
+    actions: ['voyage']
   }
 },
 {
