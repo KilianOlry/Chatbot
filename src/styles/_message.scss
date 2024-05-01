@@ -26,9 +26,6 @@
               color: $text-primary;
               font-weight: 500;
             }
-            #img-voyage{
-              border-radius: none;
-            }
             .botmessage{
               color: $text-secondary;
               font-weight: 300;
@@ -37,9 +34,8 @@
               text-align: end;
               margin-top: 10px;
             }
-            .img-voyage{
-              border-radius: 2rem;
-            }
+            @import './message-voyage';
+            @import './message-pokemon';
         }
       }
     }

@@ -4,7 +4,7 @@ import botDatas from '../../models/entite';
 function renderMessage(image) {
   return `
     <img src='${image}' class ='img-voyage' alt='Image'>
-    <a href='' download='${image}' Télécharger l'image>
+    <a href='' class='link-download' download='${image}'>Télécharger l'image</a>
   `;
 }
 function renderError(messageUser) {
