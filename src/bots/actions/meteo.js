@@ -28,6 +28,13 @@ function errorActions() {
   return botResponse;
 }
 
+const nameFunctions = {
+  info,
+  temperature,
+  vent,
+  help
+};
+
 async function meteo(messageUser) {
   const words = messageUser.split(' ');
   const arg = words[1];
@@ -41,17 +48,16 @@ async function meteo(messageUser) {
     weatherData = response.data;
 
     let botResponse = '';
-    if (arg === 'info') {
-      botResponse = info(city, weatherData);
-    } else if (arg === 'temperature') {
-      botResponse = temperature(city, weatherData);
-    } else if (arg === 'vent') {
-      botResponse = vent(city, weatherData);
-    } else if (arg === 'help') {
-      botResponse = help();
+
+    const nameFunction = arg;
+    const funcFromMap = nameFunctions[nameFunction];
+    if (typeof funcFromMap === 'function') {
+      botResponse = funcFromMap(city, weatherData);
     }
+
     return [botResponse, botData.name, botData.image];
   }
+
   const botResponse = errorActions();
   return [botResponse, botData.name, botData.image];
 }
