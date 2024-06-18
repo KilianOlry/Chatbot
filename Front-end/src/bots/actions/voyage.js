@@ -1,7 +1,7 @@
 import axios from 'axios';
 import botDatas from '../../models/entite';
 
-function renderMessage(image) {
+function renderImage(image) {
   return `
     <img src='${image}' class ='img-voyage' alt='Image'>
     <a href='' class='link-download' download='${image}'>Télécharger l'image</a>
@@ -24,8 +24,7 @@ async function voyage(messageUser) {
     const apiUrl = `https://api.unsplash.com/search/photos?count=1&query=${cityName}&client_id=${apiKey}`;
     try {
       const data = await axios.get(apiUrl);
-      const image = data.data.results[0].urls.small;
-      const botResponse = renderMessage(image);
+      const botResponse = renderImage(data.data.results[0].urls.small);
       return [botResponse, botData.name, botData.image];
     } catch {
       const botResponse = renderError(messageUser);

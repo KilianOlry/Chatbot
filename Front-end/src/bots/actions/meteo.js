@@ -39,11 +39,12 @@ async function meteo(messageUser) {
   const words = messageUser.split(' ');
   const arg = words[1];
   const city = words[2];
-  let weatherData = '';
-  const apiKey = process.env.WEATHER_API_KEY;
-  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=fr&appid=${apiKey}`;
+
   const botData = botDatas.find((element) => element.actions.keyword === 'meteo');
   if (botData.actions.actions.includes(arg)) {
+    let weatherData = '';
+    const apiKey = process.env.WEATHER_API_KEY;
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=fr&appid=${apiKey}`;
     const response = await axios.get(apiUrl);
     weatherData = response.data;
 
