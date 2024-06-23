@@ -4,6 +4,7 @@ import viewNav from '../views/nav';
 import viewBots from '../views/chat-bot/bots';
 import viewInput from '../views/chat-bot/input';
 import viewMessageBot from '../views/chat-bot/message';
+import Utiles from '../services/Utiles';
 import * as bots from '../bots/bots';
 
 const Chat = class {
@@ -103,14 +104,6 @@ const Chat = class {
     `;
   }
 
-  toggleBtn() {
-    const toggleBtn = document.querySelector('.toggleBtn');
-    const viewUser = document.querySelector('.container__bot');
-    toggleBtn.addEventListener('click', () => {
-      viewUser.classList.toggle('responsive');
-    });
-  }
-
   async getMessages() {
     const apiUrl = 'http://localhost/messages';
     try {
@@ -123,7 +116,7 @@ const Chat = class {
 
   async run() {
     this.el.innerHTML = await this.renderSkeleton();
-    this.toggleBtn();
+    this.utiles = new Utiles();
     this.sendMessage();
     this.getMessages();
   }
