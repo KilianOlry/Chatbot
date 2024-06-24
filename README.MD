@@ -1,5 +1,5 @@
 <div align="center" id="top"> 
-  <img src="https://imgs.search.brave.com/9OLUzBkpzVC9rtgBkiOhA0IrfiAk8cDh7to3I7YugPQ/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/Y2hhdGJvdC5jb20v/Y2hhdGJvdC1haS1h/c3Npc3QuZDk3ZmQ2/NzgxZDVhZGMwNTU1/MDQ2MTQ4NzMzZjJj/MDlmYjBhMjExNDI1/MTI3NmZjYjU3NWNl/ZjU3NjViMjVjMi5w/bmc" alt="chatbot logo" />
+  <img src="https://imgs.search.brave.com/9OLUzBkpzVC9rtgBkiOhA0IrfiAk8cDh7to3I7YugPQ/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/Y2hhdGJvdC5jb20v/Y2hhdGJvdC1haS1h/c3Npc3QuZDk3ZmQ2/NzgxZDVhZGMwNTU1/MDQ2MTQ4NzMzZjJj/MDlmYjBhMjExNDI1/MTI3NmZjYjU3NWNl/ZjU3NjViMjVjMi5w/bmc" width='120px' height='120px' alt="chatbot logo" />
 
   &#xa0;
 
