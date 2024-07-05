@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 import viewNav from '../views/nav';
 import viewBots from '../views/chat-bot/bots';
 import viewInput from '../views/chat-bot/input';
@@ -25,7 +27,7 @@ const Chat = class {
   }
 
   checkBotExist(firstWord) {
-    return Object.keys(bots).includes(firstWord);
+    return this.bots.some((bot) => Object.values(bot).includes(firstWord));
   }
 
   async callBot(messageUser) {
@@ -36,7 +38,7 @@ const Chat = class {
     if (this.checkBotExist(firstWord)) {
       const botResponse = await bots[firstWord](messageUser);
       listMessage.insertAdjacentHTML('beforeend', this.renderMessage(messageUser));
-      listMessage.insertAdjacentHTML('beforeend', viewMessageBot(botResponse[1], botResponse[2], botResponse[0]));
+      listMessage.insertAdjacentHTML('beforeend', viewMessageBot(botResponse.botName, botResponse.botImage, botResponse.botResponse));
     }
 
     listMessage.scrollTop = listMessage.scrollHeight;
@@ -44,22 +46,19 @@ const Chat = class {
   }
 
   sendMessage() {
-    const elInputChat = document.querySelector('.form-control');
-    const btn = document.querySelector('.btn');
+    const elInput = document.querySelector('.form-control');
+    const elBtn = document.querySelector('.btn');
 
-    btn.addEventListener('click', () => {
-      const inputValue = elInputChat.value;
-      if (inputValue !== '') {
-        this.callBot(inputValue, elInputChat);
+    elBtn.addEventListener('click', () => {
+      if (elInput.value !== '') {
+        this.callBot(elInput.value);
       }
       return false;
     });
 
-    elInputChat.addEventListener('keyup', (e) => {
-      const inputValue = elInputChat.value;
-
-      if (e.keyCode === 13 && inputValue !== '') {
-        this.callBot(inputValue, elInputChat);
+    elInput.addEventListener('keyup', (e) => {
+      if (e.keyCode === 13 && elInput.value !== '') {
+        this.callBot(elInput.value);
       }
       return false;
     });
@@ -75,7 +74,7 @@ const Chat = class {
               <p class='user__message'>${content}</p>
               <p class='user__date'>${new Date().toLocaleDateString('fr')}</p>
           </div>
-            <img class='user__image avatar' src="https://i.pinimg.com/564x/47/ba/71/47ba71f457434319819ac4a7cbd9988e.jpg" width='80' height='80' alt="">
+          <img class='user__image avatar' src="https://i.pinimg.com/564x/47/ba/71/47ba71f457434319819ac4a7cbd9988e.jpg" width='80' height='80' alt="image de profil">
         </div>
       </div>
     </div>
@@ -87,7 +86,7 @@ const Chat = class {
       ${viewNav()}
       <main>
         <article class='container__bot'>
-          ${viewBots(await bots.botApi())}
+          ${viewBots(this.bots)}
         </article>
 
         <div class='container__right'>
@@ -110,10 +109,10 @@ const Chat = class {
   }
 
   async run() {
+    this.bots = await this.serviceAxios.Get('http://localhost/bots');
     this.el.innerHTML = await this.renderSkeleton();
     this.utiles = new ServiceUtiles();
     this.sendMessage();
-
     const messages = await this.getMessages();
     console.log(messages);
   }

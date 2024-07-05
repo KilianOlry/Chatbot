@@ -1,4 +1,4 @@
-const Bots = class {
+const Utiles = class {
   constructor() {
     this.toggleBtn();
   }
@@ -12,4 +12,4 @@ const Bots = class {
   }
 };
 
-export default Bots;
+export default Utiles;

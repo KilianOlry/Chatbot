@@ -37,10 +37,9 @@ const nameFunctions = {
 
 async function meteo(messageUser) {
   const words = messageUser.split(' ');
-  const arg = words[1];
-  const city = words[2];
+  const [botName, arg, city] = words;
 
-  const botData = botDatas.find((element) => element.actions.keyword === 'meteo');
+  const botData = botDatas.find((element) => element.actions.keyword === botName);
   if (botData.actions.actions.includes(arg)) {
     let weatherData = '';
     const apiKey = process.env.WEATHER_API_KEY;
@@ -56,7 +55,8 @@ async function meteo(messageUser) {
       botResponse = funcFromMap(city, weatherData);
     }
 
-    return [botResponse, botData.name, botData.image];
+    // return [botResponse, botData.name, botData.image];
+    return { botResponse, botName: botData.name, botImage: botData.image };
   }
 
   const botResponse = errorActions();
