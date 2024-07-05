@@ -1,7 +1,9 @@
 import viewNav from '../views/nav';
-import contributors from '../models/contributors';
 import viewCards from '../views/contributors/cards';
-import Utiles from '../services/Utiles';
+
+import ModelContributors from '../models/contributors';
+
+import ServiceUtiles from '../services/Utiles';
 
 const Bots = class {
   constructor() {
@@ -14,9 +16,13 @@ const Bots = class {
     return `
     
       ${viewNav()}
-      <h1 class= 'title-bot-page'>Les <span>Développeurs</span></h1>
+      
+      <h1 class='title-bot-page'>Les <span>Développeurs</span></h1>
+      
       <main class=''>
-        ${viewCards(contributors)}
+        
+        ${viewCards(ModelContributors)}
+      
       </main>
     `;
   }
@@ -36,7 +42,7 @@ const Bots = class {
   async run() {
     this.el.innerHTML = this.renderSkeleton();
     this.removeEffect();
-    this.utiles = new Utiles();
+    this.utiles = new ServiceUtiles();
   }
 };
 

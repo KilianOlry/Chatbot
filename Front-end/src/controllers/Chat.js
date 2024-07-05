@@ -1,17 +1,17 @@
-import axios from 'axios';
-
 import viewNav from '../views/nav';
 import viewBots from '../views/chat-bot/bots';
 import viewInput from '../views/chat-bot/input';
 import viewMessageBot from '../views/chat-bot/message';
-import Utiles from '../services/Utiles';
+
+import ServiceUtiles from '../services/Utiles';
+import ServiceAxios from '../services/Axios';
 import * as bots from '../bots/bots';
 
 const Chat = class {
   constructor() {
     this.el = document.getElementById('app');
     this.message = document.querySelector('.container__message__user');
-
+    this.serviceAxios = new ServiceAxios();
     this.run();
   }
 
@@ -69,7 +69,7 @@ const Chat = class {
     return `
     <div class='user'>
       <div class='container__message__user'>
-        <div class="message__user messageBot">
+        <div class="message__user messageBot messageUser2">
           <div class='message__content'>
               <p class='user__name'>Matéo Grange</p>
               <p class='user__message'>${content}</p>
@@ -105,20 +105,17 @@ const Chat = class {
   }
 
   async getMessages() {
-    const apiUrl = 'http://localhost/messages';
-    try {
-      const response = await axios.get(apiUrl);
-      return response.data;
-    } catch (error) {
-      return error;
-    }
+    const messages = await this.serviceAxios.Get('http://localhost/messages');
+    return messages;
   }
 
   async run() {
     this.el.innerHTML = await this.renderSkeleton();
-    this.utiles = new Utiles();
+    this.utiles = new ServiceUtiles();
     this.sendMessage();
-    this.getMessages();
+
+    const messages = await this.getMessages();
+    console.log(messages);
   }
 };
 
