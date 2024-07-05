@@ -19,7 +19,7 @@ const entitie = [{
   image: 'https://th.bing.com/th/id/OIP.jgdB3TbaXO4j0aIy2IPyRAHaFj?w=480&h=360&rs=1&pid=ImgDetMain',
   actions: {
     keyword: 'pokemon',
-    actions: ['info', 'evolution']
+    actions: ['info', 'evolution', 'help']
   }
 },
 {
@@ -34,7 +34,8 @@ const entitie = [{
   name: 'Help Command',
   image: 'https://cdn0.iconfinder.com/data/icons/user-interface-flat-icons/128/support-512.png',
   actions: {
-    keyword: ['help']
+    keyword: 'help',
+    actions: ['help']
   }
 },
 {

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import axios from 'axios';
 import botDatas from '../../models/entite';
 
@@ -50,8 +51,7 @@ function renderEvolution(pokemonData, imageEvo) {
 }
 
 function renderError(messageUser) {
-  return `
-  <p>La commande '${messageUser}' n'existe pas</p>`;
+  return `<p>La commande '${messageUser}' n'existe pas</p>`;
 }
 
 function renderHelp() {
@@ -66,32 +66,32 @@ function renderHelp() {
 
 async function pokemon(messageUser) {
   const words = messageUser.split(' ');
-  const arg = words[1];
-  const pokemonName = words[2];
-  let pokemonData = '';
-  let botResponse = '';
-  const apiUrl = `https://tyradex.tech/api/v1/pokemon/${pokemonName}`;
-  const botData = botDatas.find((element) => element.actions.keyword === 'pokemon');
+  const [botName, arg, pokemonName] = words;
+
+  const botData = botDatas.find((element) => element.actions.keyword === botName);
 
   if (botData.actions.actions.includes(arg)) {
+    if (arg === 'help') {
+      return { botResponse: renderHelp(), botName: botData.name, botImage: botData.image };
+    }
+    const apiUrl = `https://tyradex.tech/api/v1/pokemon/${pokemonName}`;
     if (arg === 'info') {
       const response = await axios.get(apiUrl);
-      pokemonData = response.data;
-      botResponse = renderInfo(pokemonData);
-    } else if (arg === 'evolution') {
+      return { botResponse: renderInfo(response.data), botName: botData.name, botImage: botData.image };
+    }
+    if (arg === 'evolution') {
       const response = await axios.get(apiUrl);
-      pokemonData = response.data;
+      const pokemonData = response.data;
       const evoUrl = `https://tyradex.tech/api/v1/pokemon/${pokemonData.evolution.next[0].name}`;
       const responseEvo = await axios.get(evoUrl);
       const pokemonImageEvo = responseEvo.data.sprites.regular;
-      botResponse = renderEvolution(pokemonData, pokemonImageEvo);
-    } else if (arg === 'random') {
-      botResponse = renderHelp();
+      return { botResponse: renderEvolution(pokemonData, pokemonImageEvo), botName: botData.name, botImage: botData.image };
     }
-    return [botResponse, botData.name, botData.image];
+    if (arg === 'random') {
+      return { botResponse: 'test', botName: botData.name, botImage: botData.image };
+    }
   }
-  botResponse = renderError(messageUser);
-  return [botResponse, botData.name, botData.image];
+  return { botResponse: renderError(messageUser), botName: botData.name, botImage: botData.image };
 }
 
 export default pokemon;
