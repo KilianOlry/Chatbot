@@ -37,6 +37,7 @@ const Chat = class {
 
     if (this.checkBotExist(firstWord)) {
       const botResponse = await bots[firstWord](messageUser);
+      console.log(botResponse);
       listMessage.insertAdjacentHTML('beforeend', this.renderMessage(messageUser));
       listMessage.insertAdjacentHTML('beforeend', viewMessageBot(botResponse.botName, botResponse.botImage, botResponse.botResponse));
     }
@@ -53,14 +54,12 @@ const Chat = class {
       if (elInput.value !== '') {
         this.callBot(elInput.value);
       }
-      return false;
     });
 
     elInput.addEventListener('keyup', (e) => {
       if (e.keyCode === 13 && elInput.value !== '') {
         this.callBot(elInput.value);
       }
-      return false;
     });
   }
 
@@ -84,7 +83,9 @@ const Chat = class {
   async renderSkeleton() {
     return `
       ${viewNav()}
+      
       <main>
+        
         <article class='container__bot'>
           ${viewBots(this.bots)}
         </article>
@@ -103,18 +104,18 @@ const Chat = class {
     `;
   }
 
-  async getMessages() {
-    const messages = await this.serviceAxios.Get('http://localhost/messages');
-    return messages;
-  }
+  // async getMessages() {
+  //   const messages = await this.serviceAxios.Get('http://localhost/messages');
+  //   return messages;
+  // }
 
   async run() {
     this.bots = await this.serviceAxios.Get('http://localhost/bots');
     this.el.innerHTML = await this.renderSkeleton();
     this.utiles = new ServiceUtiles();
     this.sendMessage();
-    const messages = await this.getMessages();
-    console.log(messages);
+    // const messages = await this.getMessages();
+    // console.log(messages);
   }
 };
 
