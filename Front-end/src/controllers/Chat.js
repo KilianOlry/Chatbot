@@ -13,6 +13,7 @@ const Chat = class {
   constructor() {
     this.el = document.getElementById('app');
     this.message = document.querySelector('.container__message__user');
+    this.user = window.localStorage.getItem('pseudo');
     this.serviceAxios = new ServiceAxios();
     this.run();
   }
@@ -69,7 +70,7 @@ const Chat = class {
       <div class='container__message__user'>
         <div class="message__user messageBot messageUser2">
           <div class='message__content'>
-              <p class='user__name'>Matéo Grange</p>
+              <p class='user__name'>${this.user}</p>
               <p class='user__message'>${content}</p>
               <p class='user__date'>${new Date().toLocaleDateString('fr')}</p>
           </div>

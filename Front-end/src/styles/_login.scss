@@ -1,0 +1,17 @@
+.login{
+  height: calc(100vh - 100px);
+  display: grid;
+  place-items: center;
+}
+.input{
+  display: flex;
+  flex-direction: column;
+  input{
+    border: none;
+    background-color: transparent;
+    &:focus, &:active{
+      border: none;
+      outline: none;
+    }
+  }
+}
