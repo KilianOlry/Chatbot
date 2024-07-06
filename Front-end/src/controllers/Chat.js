@@ -13,7 +13,7 @@ const Chat = class {
   constructor() {
     this.el = document.getElementById('app');
     this.message = document.querySelector('.container__message__user');
-    this.user = window.localStorage.getItem('pseudo');
+    this.user = JSON.parse(window.localStorage.getItem('user'));
     this.serviceAxios = new ServiceAxios();
     this.run();
   }
@@ -70,11 +70,11 @@ const Chat = class {
       <div class='container__message__user'>
         <div class="message__user messageBot messageUser2">
           <div class='message__content'>
-              <p class='user__name'>${this.user}</p>
+              <p class='user__name'>${this.user.pseudo}</p>
               <p class='user__message'>${content}</p>
               <p class='user__date'>${new Date().toLocaleDateString('fr')}</p>
           </div>
-          <img class='user__image avatar' src="https://i.pinimg.com/564x/47/ba/71/47ba71f457434319819ac4a7cbd9988e.jpg" width='80' height='80' alt="image de profil">
+          <img class='user__image avatar' src="${this.user.imageProfil}" width='80' height='80' alt="image de profil">
         </div>
       </div>
     </div>

@@ -13,8 +13,7 @@ const Login = class {
 
       <div class="login">
         <form class='form'>
-          <img src='https://imgs.search.brave.com/9OLUzBkpzVC9rtgBkiOhA0IrfiAk8cDh7to3I7YugPQ/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/Y2hhdGJvdC5jb20v/Y2hhdGJvdC1haS1h/c3Npc3QuZDk3ZmQ2/NzgxZDVhZGMwNTU1/MDQ2MTQ4NzMzZjJj/MDlmYjBhMjExNDI1/MTI3NmZjYjU3NWNl/ZjU3NjViMjVjMi5w/bmc' width='200px' height='200px'>
-          <div class='input'>
+           <div class='input'>
             <input type='text' placeholder='Pseudo' class='input-pseudo'>
             </div>
             <button type='submit' class='submit'>valider</button>
@@ -28,11 +27,16 @@ const Login = class {
     elForm.addEventListener('submit', (e) => {
       e.preventDefault();
       this.buildLocaleStorage(inputPseudo.value);
+      this.redirectToChat();
     });
   }
 
   buildLocaleStorage(pseudo) {
-    window.localStorage.setItem('pseudo', pseudo);
+    const userInformation = { pseudo, imageProfil: `https://ui-avatars.com/api/?name=${pseudo}` };
+    window.localStorage.setItem('user', JSON.stringify(userInformation));
+  }
+
+  redirectToChat() {
     window.location.href = '/chat';
   }
 
