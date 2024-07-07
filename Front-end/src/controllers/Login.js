@@ -11,14 +11,19 @@ const Login = class {
     return `
       ${viewNav()}
 
-      <div class="login">
+      <section class='container'>
+
+        <h1 class='title-bot-page'>Se <span>connecter</span></h1>
+        
         <form class='form'>
-           <div class='input'>
+          <div class='input'>
+            <label>Pseudo</label>
             <input type='text' placeholder='Pseudo' class='input-pseudo'>
-            </div>
             <button type='submit' class='submit'>valider</button>
-          </form>
-      </div>`;
+          </div>
+        </form>
+    
+      </section>`;
   }
 
   submitForm() {

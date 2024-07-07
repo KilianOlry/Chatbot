@@ -1,17 +1,40 @@
-.login{
-  height: calc(100vh - 100px);
+form{
   display: grid;
   place-items: center;
-}
-.input{
-  display: flex;
-  flex-direction: column;
-  input{
-    border: none;
-    background-color: transparent;
-    &:focus, &:active{
-      border: none;
-      outline: none;
+  .input{
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    min-width: 310px;
+    margin-block: 2rem;
+    label{
+      margin-bottom: 1rem;
     }
+    input{
+      border: 1px solid #62626d;
+      border-radius: .5rem;
+      background-color: transparent;
+      box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+      padding: 1rem;
+      &:focus, &:active{
+        border: none;
+        outline: none;
+      }
+    }
+  button{
+    margin-block: 2rem;
+    cursor: pointer;
+    padding-block: .8rem;
+    border: none;
+    background-color: $blue-color;
+    color: white;
+    font-size: 1.2rem;
+    border-radius: .5rem;
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+    transition: .2s;
+    &:hover{
+      background-color: $text-secondary;
+    }
+  }
   }
 }

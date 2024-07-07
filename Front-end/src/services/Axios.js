@@ -4,14 +4,12 @@ import axios from 'axios';
 
 const Axios = class {
   async Get(url) {
-    console.log('URL', url);
     return axios.get(url, {
       headers: {
         'Content-Type': 'application/json'
       }
     })
       .then((response) => {
-        console.log(response);
         if (response.status === 200) {
           console.log(response.data);
           return response.data;

@@ -3,6 +3,7 @@ import Error404 from './controllers/Error404';
 const Router = class {
   constructor(routes = []) {
     this.path = window.location.pathname;
+    this.granted = !!window.localStorage.getItem('user');
     this.params = !window.location.search ? {} : Object.fromEntries(
       window.location.search
         .split('?')[1]
@@ -21,10 +22,13 @@ const Router = class {
       const route = this.routes[i];
 
       if (route.url === this.path) {
-        const Controller = route.controller;
-        new Controller(this.params);
-        ifExist = true;
-        break;
+        if (route.granted === undefined || route.granted === this.granted) {
+          const Controller = route.controller;
+          new Controller(this.params);
+          ifExist = true;
+          break;
+        }
+        window.location.href = '/';
       }
     }
 

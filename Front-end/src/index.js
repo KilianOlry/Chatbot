@@ -12,6 +12,7 @@ const routes = [{
 },
 {
   url: '/chat',
+  granted: true,
   controller: Chat
 },
 {
